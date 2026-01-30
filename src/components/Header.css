@@ -1,0 +1,24 @@
+.main-header {
+  /* position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: var(--max-width); */
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.main-header .right-header {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+}
+
+.main-header .left-header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}

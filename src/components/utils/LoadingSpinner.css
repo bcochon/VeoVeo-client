@@ -1,0 +1,48 @@
+.loading-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid var(--primary-color);
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: loadingSpinnerRotation 1s linear infinite;
+}
+
+.loading-spinner-small {
+  width: 1rem;
+  height: 1rem;
+}
+
+.loading-spinner-medium {
+  width: 3rem;
+  height: 3rem;
+}
+
+.loading-spinner-large {
+  width: 6rem;
+  height: 6rem;
+}
+
+.loading-spinner-label {
+  margin: 0;
+  color: var(--high-contrast-color);
+  font-size: 0.95rem;
+}
+
+@keyframes loadingSpinnerRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

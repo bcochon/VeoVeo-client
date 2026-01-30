@@ -1,0 +1,22 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { registerSW } from 'virtual:pwa-register'
+import { AuthProvider } from './context/AuthContext'
+import { NotificationsProvider } from './context/NotificationContext.jsx'
+
+import './index.css'
+import App from './App.jsx'
+
+registerSW({
+  immediate: true
+})
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <AuthProvider>
+      <NotificationsProvider>
+        <App />
+      </NotificationsProvider>
+    </AuthProvider>
+  </StrictMode>,
+)

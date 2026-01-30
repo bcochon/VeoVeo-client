@@ -1,0 +1,11 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: fit-content;
+  font-size: 1rem;
+}
+
+.login-form input {
+  font-size: 1rem;
+}

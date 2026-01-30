@@ -1,0 +1,50 @@
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 39px;
+  height: 21px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  outline: solid 1.5px var(--disabled-color);
+  transition: 0.25s;
+  border-radius: 999px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16.5px;
+  width: 16.5px;
+  left: 2.25px;
+  bottom: 2.25px;
+  background-color: var(--disabled-color);
+  transition: 0.25s;
+  border-radius: 50%;
+}
+
+.toggle input:checked + .slider {
+  outline: none;
+  background-color: var(--primary-color);
+}
+
+.toggle input:checked + .slider::before {
+  background-color: var(--primary-high-contrast-color);
+}
+
+.toggle input:checked + .slider::before {
+  transform: translateX(18px);
+}
+
+.toggle input:focus + .slider {
+  box-shadow: rgb(var(--primary-rgb) / 0.22);
+}

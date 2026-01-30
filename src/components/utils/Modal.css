@@ -1,0 +1,180 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fade-in 0.2s ease-out;
+}
+
+.modal-container {
+  background-color: var(--base-color);
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 28rem;
+  width: 100%;
+  position: relative;
+  animation: slide-up 0.3s ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--high-contrast-color);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.modal-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.modal-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icon-danger {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.modal-icon-warb {
+  background-color: #fefee2;
+  color: #dcc126;
+}
+
+.modal-icon-success {
+  background-color: rgb(220, 252, 231);
+  color: #16a34a;
+}
+
+.modal-icon-info {
+  background-color: var(--low-contrast-color);
+  color: var(--high-contrast-color);
+}
+
+.modal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--high-contrast-color);
+  margin: 0 0 0.75rem 0;
+}
+
+.modal-message {
+  color: var(--high-contrast-color);
+  line-height: 1.5;
+  margin: 0 0 2rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  font-size: 1rem;
+}
+
+.modal-btn:active {
+  transform: scale(0.98);
+}
+
+.modal-btn-cancel {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.modal-btn-cancel:hover {
+  background-color: #f9fafb;
+}
+
+.modal-btn-danger {
+  background-color: #dc2626;
+  color: white;
+}
+
+.modal-btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+.modal-btn-warn {
+  background-color: #dcbe26;
+  color: white;
+}
+
+.modal-btn-warn:hover {
+  background-color: #b9a41c;
+}
+
+.modal-btn-success {
+  background-color: #16a34a;
+  color: white;
+}
+
+.modal-btn-success:hover {
+  background-color: #15803d;
+}
+
+.modal-btn-info {
+  background-color: #1637a3;
+  color: white;
+}
+
+.modal-btn-info:hover {
+  background-color: #153280;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

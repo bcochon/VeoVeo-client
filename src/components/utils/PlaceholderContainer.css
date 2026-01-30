@@ -1,0 +1,38 @@
+.placeholder-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.placeholder-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  background-position: 0 0;
+  opacity: 0;
+  animation: placeholderReflectionShine 2s ease-in-out infinite;
+}
+
+@keyframes placeholderReflectionShine {
+  0% {
+    background-position: 0% 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 100% 0;
+    opacity: 0;
+  }
+}
