@@ -1,0 +1,15 @@
+.logo-background {
+  fill: transparent;
+}
+
+.logo-star {
+  fill: var(--primary-color);
+}
+
+.logo-body {
+  fill: #2a2a2b;
+}
+
+.logo-eyes {
+  fill: #f8f5e6;
+}

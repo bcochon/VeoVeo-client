@@ -38,7 +38,7 @@
 }
 
 .toggle input:checked + .slider::before {
-  background-color: var(--primary-high-contrast-color);
+  background-color: var(--light-color);
 }
 
 .toggle input:checked + .slider::before {

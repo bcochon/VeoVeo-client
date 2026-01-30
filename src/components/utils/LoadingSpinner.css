@@ -34,7 +34,7 @@
 
 .loading-spinner-label {
   margin: 0;
-  color: var(--high-contrast-color);
+  color: var(--light-color);
   font-size: 0.95rem;
 }
 

@@ -20,7 +20,7 @@ const Login = () => {
           <>
             <LogoutButton />
             {/* <AllowNotifications /> */}
-            <a href="/">Ver Alertas</a>
+            <a href="/">Ir a inicio</a>
           </>
         ) : (
           <LoginForm />
