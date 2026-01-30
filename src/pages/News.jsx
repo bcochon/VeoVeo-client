@@ -2,19 +2,20 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ModalNotificaciones from "../components/ModalNotificaciones";
-import FeedContainer from "../components/feed/FeedContainer";
 
-import './Home.css';
+import './News.css';
 
-const Home = () => {
+const News = () => {
   return (
-    <main className="home-container">
+    <main className="news-container">
       <Header />
-      <FeedContainer />
+
+      <div className="main-container"></div>
+  
       <ModalNotificaciones />
-      <Footer currentPage={"home"} />
+      <Footer currentPage={"news"} />
     </main>
   );
-}
+};
 
-export default Home;
+export default News;

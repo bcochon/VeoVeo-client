@@ -6,9 +6,8 @@
 
   --max-width: 700px;
 
-  --today-color-rgb: ;
-  --primary-color-rgb: var(--today-color-rgb, 223 243 70);
-  --primary-color: rgb(var(--today-color-rgb, --primary-color-rgb));
+  --primary-color-rgb: var(--today-color-rgb, 0 0 0);
+  --primary-color: rgb(var(--today-color-rgb, var(--primary-color-rgb)));
   --primary-dark-color: rgb(var(--primary-color-rgb) / 0.1);
 
   --light-color-rgb: 248 245 231;
@@ -31,7 +30,6 @@
 
   color-scheme: light dark;
   color: var(--light-color);
-  background: var(--background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -62,6 +60,7 @@ body {
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  background: var(--background);
 }
 
 h1 {

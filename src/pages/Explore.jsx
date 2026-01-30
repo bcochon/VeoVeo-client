@@ -2,19 +2,18 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ModalNotificaciones from "../components/ModalNotificaciones";
-import FeedContainer from "../components/feed/FeedContainer";
 
-import './Home.css';
+import './Explore.css';
 
-const Home = () => {
+const Explore = () => {
   return (
-    <main className="home-container">
-      <Header />
-      <FeedContainer />
+    <main className="explore-container">
+      <div className="main-container"></div>
+  
       <ModalNotificaciones />
-      <Footer currentPage={"home"} />
+      <Footer currentPage={"explore"} />
     </main>
   );
-}
+};
 
-export default Home;
+export default Explore;

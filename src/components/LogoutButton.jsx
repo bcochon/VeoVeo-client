@@ -26,7 +26,7 @@ const LogoutButton = () => {
 
   return (
     <button onClick={handleLogout} disabled={loading}>
-      {loading? 'Cerrar sesión' : 'Cerrando sesión...'}
+      {loading? 'Cerrando sesión...' : 'Cerrar sesión'}
     </button>
   )
 }

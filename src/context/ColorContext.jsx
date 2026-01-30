@@ -26,7 +26,7 @@ export const ColorProvider = ({ children }) => {
       getTodayColor()
         .then((data) => {
           // const color = data?.color;
-          const color = { value: '#ff67ab' }
+          const color = { value: '#2db621' }
           console.log("Color del día:", color);
           setPrimaryColor(color);
           if (color?.value) {

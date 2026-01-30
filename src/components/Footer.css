@@ -28,6 +28,7 @@
   justify-content: center;
   border-radius: 100%;
   color: var(--light-color);
+  transition: background-color 0.2s;
 }
 
 .main-footer .footer-button.disabled {
@@ -54,7 +55,7 @@
   color: var(--dark-color);
 }
 
-.main-footer .footer-main-button:hover {
-  background-color: rgb(var(--light-color-rgb)/0.9);
+.main-footer .footer-main-button:hover, .main-footer .footer-main-button:focus {
+  background-color: rgb(var(--primary-color-rgb)/0.9);
   color: var(--dark-color);
 }

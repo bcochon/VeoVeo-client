@@ -11,7 +11,6 @@ const Login = () => {
 
   return (
     <main>
-      {user && <Header />}
       <div className="flex-container">
         <h4>
           {user ? `Logueado como ${user?.username}` : "Sesión no iniciada"}

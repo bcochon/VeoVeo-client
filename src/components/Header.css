@@ -14,7 +14,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   z-index: 0;
 }
 
@@ -27,15 +27,15 @@
 }
 
 .main-header .side-button {
-  width: 10vw;
-  height: 10vw;
+  width: 3.25rem;
+  height: 3.25rem;
   margin: 0 1rem 1rem 1rem;
   color: var(--light-color);
 }
 
 .main-header .main-logo {
-  width: 20vw;
-  height: 20vw;
+  width: 20%;
+  aspect-ratio: 1;
 }
 
 .main-header .side-button:hover {

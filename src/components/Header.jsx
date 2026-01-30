@@ -10,7 +10,7 @@ const Header = () => {
       <a href="/" aria-label="Ajustes" className="header-button side-button">
         <FontAwesomeIcon icon={faBars} />
       </a>
-      <a href="/" aria-label="Inicio" className="header-button main-logo">
+      <a href="/#feedTop" aria-label="Inicio" className="header-button main-logo">
         <Logo />
       </a>
       <a href="/" aria-label="Notificaciones" className="header-button side-button">
