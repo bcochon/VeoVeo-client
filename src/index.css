@@ -6,15 +6,17 @@
 
   --max-width: 700px;
 
+  --today-color-rgb: ;
+  --primary-color-rgb: var(--today-color-rgb, 223 243 70);
+  --primary-color: rgb(var(--today-color-rgb, --primary-color-rgb));
+  --primary-dark-color: rgb(var(--primary-color-rgb) / 0.1);
+
   --light-color-rgb: 248 245 231;
   --light-color: rgb(var(--light-color-rgb));
   --dark-color-rgb: 0 0 0;
   --dark-color: rgb(var(--dark-color-rgb));
   --dark-green-color-rgb: 42 42 43;
   --dark-green-color: rgb(var(--dark-green-color-rgb));
-  --primary-color-rgb: 223 243 70;
-  --primary-color: rgb(var(--primary-color-rgb));
-  --primary-dark-color: rgb(var(--primary-color-rgb) / 0.1);
 
   --success-color: rgb(65, 145, 54);
   --success-secondary-color: rgb(58, 161, 44);
@@ -25,7 +27,7 @@
   --disabled-color: #898787;
   --disabled-contrast-color: #cdcdcd;
 
-  --background: linear-gradient(142deg, var(--dark-color) 30%, rgb(var(--primary-color-rgb) / 0.1) 100%);
+  --background: linear-gradient(142deg, var(--dark-color) 50%, rgb(var(--primary-color-rgb) / 0.1) 100%);
 
   color-scheme: light dark;
   color: var(--light-color);

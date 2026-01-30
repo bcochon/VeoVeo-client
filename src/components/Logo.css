@@ -3,7 +3,7 @@
 }
 
 .logo-star {
-  fill: var(--primary-color);
+  fill: rgb(var(--primary-color-rgb)/0.85);
 }
 
 .logo-body {

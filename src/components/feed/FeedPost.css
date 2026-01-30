@@ -1,0 +1,85 @@
+.feed-post-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-post-container button {
+  background-color: transparent;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  outline: none;
+}
+
+.feed-post-container button:focus {
+  border: none;
+  outline: none;
+}
+
+.feed-post-container .feed-post-header {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.75rem;
+}
+
+.feed-post-container .feed-post-user-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.feed-post-container .feed-post-user-details .user-picture {
+  border-radius: 100%;
+  height: 2.5rem;
+  margin: 0.5rem;
+}
+
+.feed-post-container .feed-post-username-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 0 0.5rem;
+  font-size: 1rem;
+}
+
+.feed-post-container .feed-post-time {
+  font-size: 0.9rem;
+  color: var(--disabled-color);
+}
+
+
+.feed-post-container .feed-post-options {
+  
+}
+
+.feed-post-container .feed-post-image {
+  width: 95%;
+  border-radius: 2rem;
+  box-shadow: -0.25px -0.2px 5px rgb(var(--primary-color-rgb)/0.25);
+}
+
+.feed-post-container .feed-post-actions {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 1.5rem;
+  gap: 1rem;
+}
+
+.feed-post-container .feed-post-action-button {
+  width: fit-content;
+  padding: 0.25rem;
+}
+
+.feed-post-container .feed-post-like.liked {
+  color: var(--primary-color);
+}

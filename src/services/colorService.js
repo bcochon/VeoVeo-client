@@ -1,9 +1,9 @@
 import { config } from '../config.js'
 
 export async function getTodayColor() {
-  console.log('Obteniendo feed');
+  console.log('Obteniendo color del día');
 
-  const response = await fetch(`${config.serverUrl}/color-days-today`, {
+  const response = await fetch(`${config.serverUrl}/color-days/today`, {
     method: 'GET',
     credentials: 'include',
   });

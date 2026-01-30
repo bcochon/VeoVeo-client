@@ -6,14 +6,17 @@
   height: 3.5rem;
   width: 100%;
   max-width: var(--max-width);
-  background-color: rgb(var(--dark-color-rgb)/0.8);
+  background-color: rgb(var(--dark-color-rgb)/0.975);
+  border: solid 2px rgb(var(--dark-color-rgb)/0.975);
+  backdrop-filter: blur(10px);
   color: var(--light-color);
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  padding: 1rem 0;
+  padding-top: 1rem;
+  margin: 0;
 }
 
 .main-footer .footer-button {

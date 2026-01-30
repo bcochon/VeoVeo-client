@@ -1,0 +1,17 @@
+.feed-container {
+  min-height: 100%;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feed-container .empty-header-placeholder {
+  min-height: 4rem;
+  height: calc(20vw + 2rem);
+}
+
+.feed-container .empty-footer-placeholder {
+  min-height: 5rem;
+}
