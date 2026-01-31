@@ -7,6 +7,7 @@ const ColorContext = createContext(null);
 export const useColor = () => useContext(ColorContext);
 
 export const ColorProvider = ({ children }) => {
+  const [colorDay, setColorDay] = useState(null);
   const [primaryColor, setPrimaryColor] = useState(null);
   const [loadingColor, setLoadingColor] = useState(false);
 
@@ -25,8 +26,8 @@ export const ColorProvider = ({ children }) => {
       setLoadingColor(true);
       getTodayColor()
         .then((data) => {
-          // const color = data?.color;
-          const color = { value: '#2db621' }
+          setColorDay(data);
+          const color = data?.color;
           console.log("Color del día:", color);
           setPrimaryColor(color);
           if (color?.value) {
@@ -45,7 +46,7 @@ export const ColorProvider = ({ children }) => {
   }, []);
 
   return (
-    <ColorContext.Provider value={{ primaryColor, loadingColor }}>
+    <ColorContext.Provider value={{ colorDay, primaryColor, loadingColor }}>
       {children}
     </ColorContext.Provider>
   );

@@ -20,7 +20,7 @@ function ProfileContainer({ userData }) {
         setError('');
         const data = await getPosts();
         setPostsCount(data?.total || 0);
-        setUserPosts([...(data?.data || []), ...(data?.data || [])]);
+        setUserPosts(data?.data || []);
       } catch(err) {
         console.error('Error obteniendo posts para feed:', err);
         setError(err);
