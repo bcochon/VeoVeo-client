@@ -9,6 +9,8 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import './App.css'
 import 'leaflet/dist/leaflet.css';
+import PostView from "./pages/PostView";
+import UserPage from "./pages/UserPage";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -60,6 +62,8 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/users/:userId" element={<UserPage />} />
+        <Route path="/posts/:postId" element={<PostView />} />
       </Routes>
     </BrowserRouter>
   );

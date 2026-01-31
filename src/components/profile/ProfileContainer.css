@@ -7,20 +7,6 @@
   gap: 1rem;
 }
 
-.profile-container .empty-header-placeholder {
-  width: 100%;
-}
-
-.profile-container .empty-header-placeholder span {
-  display: block;
-  width: 20%;
-  aspect-ratio: 1;
-}
-
-.profile-container .empty-footer-placeholder {
-  min-height: 5rem;
-}
-
 .profile-container .profile-details {
   display: flex;
   flex-direction: column;

@@ -56,3 +56,13 @@
   height: 80%;
   width: 80%;
 }
+
+.empty-header-placeholder {
+  width: 100%;
+}
+
+.empty-header-placeholder span {
+  display: block;
+  width: 20%;
+  aspect-ratio: 1;
+}

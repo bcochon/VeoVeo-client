@@ -4,19 +4,37 @@
   background-color: transparent;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 
-.feed-container .empty-header-placeholder {
+.feed-container .placeholder-message {
+  width: 80%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feed-container .placeholder-message p {
+  margin-bottom: 50%;
+  opacity: 0;
+  animation: 1.2s ease-in-out 0s forwards fadeInFromBelow;
+}
+
+.feed-container .feed-post-link, .feed-container .feed-post-link:hover {
   width: 100%;
+  color: var(--light-color);
 }
 
-.feed-container .empty-header-placeholder span {
-  display: block;
-  width: 20%;
-  aspect-ratio: 1;
-}
-
-.feed-container .empty-footer-placeholder {
-  min-height: 5rem;
+@keyframes fadeInFromBelow {
+  from {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, -1rem);
+    opacity: 1;
+  }
 }

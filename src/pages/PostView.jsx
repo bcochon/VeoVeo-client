@@ -1,22 +1,24 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NotificationsModal from "../components/modals/NotificationsModal";
 import LoginModal from "../components/modals/LoginModal";
-import FeedContainer from "../components/feed/FeedContainer";
+import PostDetails from "../components/PostDetails";
+import './PostView.css';
 
-import './Home.css';
+const PostView = () => {
+  const { postId } = useParams();
 
-const Home = () => {
   return (
-    <main className="home-container">
+    <main className="post-view-container">
       <Header />
-      <FeedContainer />
+      <PostDetails postId={postId} />
       <NotificationsModal />
       <LoginModal />
-      <Footer currentPage={"home"} />
+      <Footer />
     </main>
   );
 }
 
-export default Home;
+export default PostView;

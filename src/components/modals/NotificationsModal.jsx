@@ -1,8 +1,8 @@
 import React from "react";
-import { useNotifications } from "../context/NotificationContext";
-import Modal from "../components/utils/Modal";
+import { useNotifications } from "../../context/NotificationContext";
+import Modal from "../utils/Modal";
 
-const ModalNotificaciones = () => {
+const NotificationsModal = () => {
   const { notificationsAvailable, getNotification, discardNotification } = useNotifications();
 
   return (
@@ -19,4 +19,4 @@ const ModalNotificaciones = () => {
   )
 }
 
-export default ModalNotificaciones;
+export default NotificationsModal;

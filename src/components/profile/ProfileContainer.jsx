@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import PostsGrid from "./PostsGrid";
-import { getPosts } from "../../services/postService";
+import { getUserPosts } from "../../services/postService";
 import "./ProfileContainer.css";
 
 function ProfileContainer({ userData }) {
@@ -18,7 +18,7 @@ function ProfileContainer({ userData }) {
       try {
         setLoading(true);
         setError('');
-        const data = await getPosts();
+        const data = await getUserPosts(userData?.id);
         setPostsCount(data?.total || 0);
         setUserPosts(data?.data || []);
       } catch(err) {
@@ -41,9 +41,6 @@ function ProfileContainer({ userData }) {
 
   return (
     <section className="profile-container">
-      <div className="empty-header-placeholder fixed-top">
-        <span></span>
-      </div>
       <div className="profile-details">
         <a href="/profile" className="profile-picture-link">
           <img
@@ -69,7 +66,6 @@ function ProfileContainer({ userData }) {
         </div>
         <PostsGrid posts={userPosts} />
       </div>
-      <span className="empty-footer-placeholder" />
     </section>
   );
 }

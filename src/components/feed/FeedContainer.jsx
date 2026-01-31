@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import FeedPost from "./FeedPost";
 import LoadingSpinner from "../utils/LoadingSpinner";
-import { getPosts } from "../../services/postService";
+import { getDayPosts } from "../../services/postService";
+import { useColor } from "../../context/ColorContext";
 import "./FeedContainer.css";
 
 function FeedContainer() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const { colorDay } = useColor();
 
   useEffect(() => {
     const load = async () => {
+      if (!colorDay)
+        return;
       try {
         setLoading(true);
         setError('');
-        const data = await getPosts();
+        const data = await getDayPosts(colorDay.id);
         setPosts(data?.data || []);
       } catch(err) {
         console.error('Error obteniendo posts para feed:', err);
@@ -25,7 +29,7 @@ function FeedContainer() {
 
     };
     load();
-  }, []);
+  }, [colorDay]);
 
   if (loading) return (
     <section className="feed-container">
@@ -35,15 +39,22 @@ function FeedContainer() {
 
   return (
     <section className="feed-container">
-      <div id="feedTop" className="empty-header-placeholder fixed-top">
-        <span></span>
-      </div>
       {posts?.length > 0 ? (
-        posts.map((post) => <FeedPost post={post} key={post.id} />)
+        posts.map((post) => (
+          <a
+            href={`/posts/${post?.id}`}
+            key={post.id}
+            className="feed-post-link"
+            aria-label="Ver detalles de publicación"
+          >
+            <FeedPost post={post} />
+          </a>
+        ))
       ) : (
-        <p>Parece que aún no hay publicaciones</p>
+        <div className="placeholder-message">
+          <p>Parece que aún nadie publicó nada hoy... ¿Y si sos el primero?</p>
+        </div>
       )}
-      <span className="empty-footer-placeholder" />
     </section>
   );
 }

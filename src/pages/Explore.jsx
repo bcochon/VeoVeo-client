@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ModalNotificaciones from "../components/ModalNotificaciones";
+import NotificationsModal from "../components/modals/NotificationsModal";
 
 import './Explore.css';
 
@@ -10,7 +10,7 @@ const Explore = () => {
     <main className="explore-container">
       <div className="main-container"></div>
   
-      <ModalNotificaciones />
+      <NotificationsModal />
       <Footer currentPage={"explore"} />
     </main>
   );

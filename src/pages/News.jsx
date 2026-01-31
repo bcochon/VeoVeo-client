@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ModalNotificaciones from "../components/ModalNotificaciones";
+import NotificationsModal from "../components/modals/NotificationsModal";
 
 import './News.css';
 
@@ -12,7 +12,7 @@ const News = () => {
 
       <div className="main-container"></div>
   
-      <ModalNotificaciones />
+      <NotificationsModal />
       <Footer currentPage={"news"} />
     </main>
   );

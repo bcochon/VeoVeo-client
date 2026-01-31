@@ -33,11 +33,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 0;
+}
+
+.feed-post-container .feed-post-user-details:hover {
+  color: var(--light-color);
 }
 
 .feed-post-container .feed-post-user-details .user-picture {
   border-radius: 100%;
-  height: 2.5rem;
+  height: 5vh;
+  max-height: 6rem;
   margin: 0.5rem;
 }
 
@@ -59,8 +65,15 @@
   
 }
 
+.feed-post-container .feed-post-image-container {
+  width: 100%;
+  padding: 0;
+  cursor: unset;
+}
+
 .feed-post-container .feed-post-image {
-  width: 95%;
+  min-width: 95%;
+  max-width: 95%;
   border-radius: 2rem;
   box-shadow: -0.25px -0.2px 5px rgb(var(--primary-color-rgb)/0.25);
 }
@@ -75,11 +88,22 @@
   gap: 1rem;
 }
 
+.feed-post-container .feed-post-action {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.feed-post-container .feed-post-action span {
+  height: 100%;
+  font-size: 1.5rem;
+}
+
 .feed-post-container .feed-post-action-button {
   width: fit-content;
   padding: 0.25rem;
 }
 
-.feed-post-container .feed-post-like.liked {
+.feed-post-container .feed-post-like-button.liked {
   color: var(--primary-color);
 }

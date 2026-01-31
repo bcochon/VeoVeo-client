@@ -1,9 +1,8 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext.jsx";
-import Header from "../components/Header.jsx";
 import LoginForm from "../components/LoginForm.jsx";
 import LogoutButton from "../components/LogoutButton.jsx";
-import AllowNotifications from "../components/AllowNotifications.jsx";
+import Footer from "../components/Footer.jsx";
 import "./Login.css";
 
 const Login = () => {
@@ -25,6 +24,7 @@ const Login = () => {
           <LoginForm />
         )}
       </div>
+      <Footer currentPage={"profile"}/>
     </main>
   );
 };

@@ -5,7 +5,7 @@ function PostsGrid({ posts, loading = false }) {
   return (
     <div className="posts-grid">
       {posts.map((post) => (
-        <a className="grid-post-link" key={post?.id}>
+        <a className="grid-post-link" href={`/posts/${post?.id}`} key={post?.id}>
           <img
             className="grid-post-image"
             src={post?.image?.url}

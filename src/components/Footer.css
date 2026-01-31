@@ -59,3 +59,7 @@
   background-color: rgb(var(--primary-color-rgb)/0.9);
   color: var(--dark-color);
 }
+
+.empty-footer-placeholder {
+  min-height: 6rem;
+}

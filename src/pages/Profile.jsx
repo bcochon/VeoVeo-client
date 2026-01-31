@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ModalNotificaciones from "../components/ModalNotificaciones";
+import NotificationsModal from "../components/modals/NotificationsModal";
 import ProfileContainer from "../components/profile/ProfileContainer";
 import { useAuth } from "../context/AuthContext";
 
@@ -13,7 +13,7 @@ const Profile = () => {
     <main className="profile-container">
       <Header />
       <ProfileContainer userData={user}/>
-      <ModalNotificaciones />
+      <NotificationsModal />
       <Footer currentPage={"profile"} />
     </main>
   );
