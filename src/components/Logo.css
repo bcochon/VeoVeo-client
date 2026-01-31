@@ -4,7 +4,7 @@
 
 .logo-star {
   fill: rgb(var(--primary-color-rgb)/0.85);
-  transition: fill 0.2s;
+  transition: fill 0.5s;
 }
 
 .logo-body {

@@ -11,7 +11,6 @@ export async function getPosts() {
   if (!response.ok) {
     throw new Error(`Servidor respondió ${response.status} ${response.statusText}`);
   }
-  const content = await response.json();
-  return content.data;
+  return await response.json();
 }
 

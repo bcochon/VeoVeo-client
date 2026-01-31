@@ -1,0 +1,32 @@
+.upload-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-color: rgb(var(--primary-color-rgb)/0.25);
+}
+
+.upload-container .upload-header {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+.upload-container .back-button {
+  border-radius: 100%;
+  padding: 0.25rem;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  font-size: 2.2rem;
+  text-align: center;
+  color: var(--light-color);
+  background-color: transparent;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.upload-container .back-button:hover {
+  color: rgb(var(--light-color-rgb)/0.75);
+  background-color: rgb(var(--light-color-rgb)/0.05);
+}

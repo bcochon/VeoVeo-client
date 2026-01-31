@@ -6,8 +6,8 @@
   height: 4rem;
   width: 100%;
   max-width: var(--max-width);
-  background-color: rgb(var(--dark-color-rgb)/0.9);
-  backdrop-filter: blur(7px);
+  background-color: rgb(var(--dark-color-rgb)/0.87);
+  backdrop-filter: blur(10px);
   color: var(--light-color);
   text-align: center;
   display: flex;
@@ -29,7 +29,7 @@
 .main-header .side-button {
   width: 3.25rem;
   height: 3.25rem;
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 1rem 0 1rem;
   color: var(--light-color);
 }
 

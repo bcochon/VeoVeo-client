@@ -1,0 +1,14 @@
+.new-post-container {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.new-post-container .preview-image {
+  border-radius: 1rem;
+  width: 90%;
+}

@@ -15,7 +15,7 @@ function FeedContainer() {
         setLoading(true);
         setError('');
         const data = await getPosts();
-        setPosts(data);
+        setPosts(data?.data || []);
       } catch(err) {
         console.error('Error obteniendo posts para feed:', err);
         setError(err);

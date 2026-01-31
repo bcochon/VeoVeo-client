@@ -3,7 +3,9 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from "./context/AuthContext";
 import Home from './pages/Home';
 import News from "./pages/News";
+import Upload from "./pages/Upload";
 import Explore from "./pages/Explore";
+import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import './App.css'
 import 'leaflet/dist/leaflet.css';
@@ -28,7 +30,7 @@ function App() {
           path="/camera"
           element={
             <ProtectedRoute>
-              <Home />
+              <Upload />
             </ProtectedRoute>
           }
         />
@@ -37,7 +39,7 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <Home />
+              <Profile />
             </ProtectedRoute>
           }
         />
