@@ -18,7 +18,18 @@ export const ColorProvider = ({ children }) => {
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
 
+    // const r = Math.round(Math.random() * 255);
+    // const g = Math.round(Math.random() * 255);
+    // const b = Math.round(Math.random() * 255);
+    // console.log(r, g, b)
+
     return { r, g, b };
+  }
+
+  function isLightColor({ r, g, b }) {
+    return ( r + g + b ) > 450
+      && ([r, g, b].filter((value) => value < 100).length < 2)
+      && (Math.max(r, g, b) - Math.min(r, g, b)) < 40
   }
 
   useEffect(() => {
@@ -37,6 +48,11 @@ export const ColorProvider = ({ children }) => {
               "--today-color-rgb",
               rgbString,
             );
+            if (isLightColor(rgb))
+              document.documentElement.style.setProperty(
+                "--alternative-color-rgb",
+                "223 243 70",
+              );
           }
         })
         .catch(() => console.error("Error obteniendo el color del día"))

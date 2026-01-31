@@ -52,7 +52,7 @@ function FeedContainer() {
         ))
       ) : (
         <div className="placeholder-message">
-          <p>Parece que aún nadie publicó nada hoy... ¿Y si sos el primero?</p>
+          <p>Parece que nadie publicó nada hoy... ¿Y si sos el primero?</p>
         </div>
       )}
     </section>
