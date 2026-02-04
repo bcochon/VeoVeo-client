@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { login, getProfile } from '../services/authService';
-import { subscribeToPush } from '../services/pushService';
+import useAuthService from '../services/authService';
+import usePushService from '../services/pushService';
 import { useAuth } from '../context/AuthContext';
 import './LoginForm.css';
 
@@ -11,6 +11,9 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const { login, getProfile } = useAuthService();
+  const { subscribeToPush } = usePushService();
 
   async function handleSubmit(e) {
     e.preventDefault(); // ⛔ stop page reload

@@ -5,22 +5,46 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
 }
 
 .camera-container .video-container {
   width: 90%;
-  height: 75%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.camera-container .today-color-container {
+  width: 95%;
+  margin: 1.75rem 0;
+  max-height: 20%;
+}
+
+.camera-container .today-color-container h2 {
+  font-weight: 600;
+  font-size: min(300%, 7vw);
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+
+.camera-container .today-color {
+  font-weight: 700;
+  display: block;
+  width: 100%;
+  font-style: italic;
+  color: var(--primary-color);
+  font-size: min(500%, 11vw);
+  text-align: right;
+}
+
 .camera-container .camera, .camera-container .camera-placeholder {
   border-radius: 2rem;
   width: 100%;
-  max-height: 100%;
+  max-height: 80%;
+  background-color: var(--primary-color);
   /* box-shadow: 0 0 20px rgb(var(--primary-color-rgb)/0.5); */
 }
 
@@ -37,12 +61,17 @@
   font-weight: bold;
 }
 
+.camera-container .camera-actions {
+  max-height: 15%;
+}
+
 .camera-container .capture-button {
   border-radius: 100%;
   margin-bottom: 2.5rem;
   height: 5rem;
   aspect-ratio: 1;
   background-color: var(--light-color);
+  border: solid 2px rgba(0, 0, 0, 0.5);
 }
 
 .camera-container .capture-button:hover {

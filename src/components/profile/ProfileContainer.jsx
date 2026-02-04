@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import PostsGrid from "./PostsGrid";
-import { getUserPosts } from "../../services/postService";
 import "./ProfileContainer.css";
+import usePostService from "../../services/postService";
 
 function ProfileContainer({ userData }) {
   const [followers, setFollowers] = useState(0);
@@ -12,6 +13,8 @@ function ProfileContainer({ userData }) {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const { getUserPosts } = usePostService();
 
   useEffect(() => {
     const load = async () => {
@@ -42,13 +45,13 @@ function ProfileContainer({ userData }) {
   return (
     <section className="profile-container">
       <div className="profile-details">
-        <a href="/profile" className="profile-picture-link">
+        <Link to="/profile" className="profile-picture-link">
           <img
             className="profile-picture"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOFneGOyzd0Mnt9VzYVFrwSMtOrloq_DJTBA&s"
             alt="Foto de perfil"
           />
-        </a>
+        </Link>
         <h3 className="profile-username">{userData?.username}</h3>
         <div className="profile-data">
           <div className="profile-data-item">

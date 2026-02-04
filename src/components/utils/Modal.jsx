@@ -10,7 +10,8 @@ export default function Modal({
   message,
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
-  variant = 'danger' // 'danger' | 'warn' | 'success' | 'info'
+  variant = 'danger', // 'danger' | 'warn' | 'success' | 'info'
+  includeTime = false
 }) {
   if (!isOpen) return null;
 
@@ -54,18 +55,26 @@ export default function Modal({
           <h2 className="modal-title">{title}</h2>
           <p className="modal-message">
             {message}
-            { variant === 'danger' &&
-              <span><br/>{`${(new Date()).toLocaleString()}`}</span>
-            }
+            {includeTime && (
+              <span>
+                <br />
+                {`${new Date().toLocaleString()}`}
+              </span>
+            )}
           </p>
 
           <div className="modal-actions">
             <button className="modal-btn modal-btn-cancel" onClick={onClose}>
               {cancelText}
             </button>
-            {onConfirm && <button className={`modal-btn ${buttonClass}`} onClick={onConfirm}>
-              {confirmText}
-            </button>}
+            {onConfirm && (
+              <button
+                className={`modal-btn ${buttonClass}`}
+                onClick={onConfirm}
+              >
+                {confirmText}
+              </button>
+            )}
           </div>
         </div>
       </div>

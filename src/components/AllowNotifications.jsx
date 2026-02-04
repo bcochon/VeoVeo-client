@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { subscribeToPush } from "../services/pushService.js";
+import usePushService from "../services/pushService.js";
 import Modal from "./utils/Modal.jsx";
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ const AllowNotifications = () => {
     onClose: () => {}
   });
   const navigate = useNavigate();
+  const { subscribeToPush } = usePushService();
 
   const closeModal = () => {setModal({ isOpen: false, onClose: () => {} })};
 

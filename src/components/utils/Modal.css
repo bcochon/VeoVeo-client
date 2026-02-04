@@ -10,7 +10,7 @@
   justify-content: center;
   z-index: 1000;
   padding: 1rem;
-  animation: fade-in 0.2s ease-out;
+  animation: modal-fade-in 0.2s ease-out;
 }
 
 .modal-container {
@@ -20,7 +20,7 @@
   max-width: 28rem;
   width: 100%;
   position: relative;
-  animation: slide-up 0.3s ease-out;
+  animation: modal-slide-up 0.3s ease-out;
 }
 
 .modal-close {
@@ -74,7 +74,7 @@
 }
 
 .modal-icon-info {
-  background-color: var(--alternative-color);
+  background-color: rgb(var(--alternative-color-rgb)/0.7);
   color: var(--light-color);
 }
 
@@ -151,15 +151,15 @@
 }
 
 .modal-btn-info {
-  background-color: #1637a3;
+  background-color: rgb(var(--alternative-color-rgb)/0.7);;
   color: white;
 }
 
 .modal-btn-info:hover {
-  background-color: #153280;
+  background-color: rgb(var(--alternative-color-rgb)/0.5);;
 }
 
-@keyframes fade-in {
+@keyframes modal-fade-in {
   from {
     opacity: 0;
   }
@@ -168,7 +168,7 @@
   }
 }
 
-@keyframes slide-up {
+@keyframes modal-slide-up {
   from {
     transform: translateY(20px);
     opacity: 0;

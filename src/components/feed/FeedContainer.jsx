@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import FeedPost from "./FeedPost";
 import LoadingSpinner from "../utils/LoadingSpinner";
-import { getDayPosts } from "../../services/postService";
+import usePostService from "../../services/postService";
 import { useColor } from "../../context/ColorContext";
+import { Link } from "react-router-dom";
 import "./FeedContainer.css";
 
 function FeedContainer() {
@@ -10,6 +11,8 @@ function FeedContainer() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const { colorDay } = useColor();
+
+  const { getDayPosts } = usePostService();
 
   useEffect(() => {
     const load = async () => {
@@ -41,14 +44,14 @@ function FeedContainer() {
     <section className="feed-container">
       {posts?.length > 0 ? (
         posts.map((post) => (
-          <a
-            href={`/posts/${post?.id}`}
+          <Link
+            to={`/posts/${post?.id}`}
             key={post.id}
             className="feed-post-link"
             aria-label="Ver detalles de publicación"
           >
             <FeedPost post={post} />
-          </a>
+          </Link>
         ))
       ) : (
         <div className="placeholder-message">

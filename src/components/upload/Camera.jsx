@@ -1,14 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import LoadingSpinner from "../utils/LoadingSpinner";
-import { compressImage } from "../../services/uploadService";
 import "./Camera.css";
+import useUploadService from "../../services/uploadService";
+import { useColor } from "../../context/ColorContext";
 
 const Camera = ({ onCapture = () => {} }) => {
   const [accesDenied, setAccessDenied] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const webcamRef = useRef(null);
+
+  const { compressImage } = useUploadService();
+  const { colorDay } = useColor();
 
   useEffect(() => {
     const ref = webcamRef.current;
@@ -46,6 +50,12 @@ const Camera = ({ onCapture = () => {} }) => {
   return (
     <div className="camera-container">
       <div className="video-container">
+        <div className="today-color-container">
+          <h2>El color de hoy es</h2>
+          <span className="today-color">
+            {colorDay?.color?.name?.toUpperCase()}
+          </span>
+        </div>
         <Webcam
           audio={false}
           ref={webcamRef}

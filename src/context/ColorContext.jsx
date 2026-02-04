@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, useContext } from 'react';
-import { getTodayColor } from '../services/colorService';
+import useColorService from '../services/colorService';
 
 const ColorContext = createContext(null);
 
@@ -10,6 +10,8 @@ export const ColorProvider = ({ children }) => {
   const [colorDay, setColorDay] = useState(null);
   const [primaryColor, setPrimaryColor] = useState(null);
   const [loadingColor, setLoadingColor] = useState(false);
+
+  const { getTodayColor } = useColorService();
 
   function hexToRgb(hex) {
     hex = hex.replace(/^#/, "");
@@ -39,6 +41,9 @@ export const ColorProvider = ({ children }) => {
         .then((data) => {
           setColorDay(data);
           const color = data?.color;
+          // const color = {
+          //   value: '#FFFF00'
+          // }
           console.log("Color del día:", color);
           setPrimaryColor(color);
           if (color?.value) {

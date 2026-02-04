@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import "./Header.css";
 
@@ -11,23 +12,23 @@ const Header = () => {
         <span></span>
       </div>
       <header className="main-header">
-        <a href="/login" aria-label="Ajustes" className="header-button side-button">
+        <Link to="/login" aria-label="Ajustes" className="header-button side-button">
           <FontAwesomeIcon icon={faBars} />
-        </a>
-        <a
-          href="/#feedTop"
+        </Link>
+        <Link
+          to="/#feedTop"
           aria-label="Inicio"
           className="header-button main-logo"
         >
           <Logo />
-        </a>
-        <a
-          href="/"
+        </Link>
+        <Link
+          to="/"
           aria-label="Notificaciones"
           className="header-button side-button"
         >
           <FontAwesomeIcon icon={faBell} />
-        </a>
+        </Link>
       </header>
     </>
   );

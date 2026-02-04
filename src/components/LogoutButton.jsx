@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { logout } from "../services/authService.js";
+import useAuthService from "../services/authService.js";
+import usePushService from "../services/pushService.js";
 import { useAuth } from "../context/AuthContext";
-import { unsubscribeToPush } from "../services/pushService.js";
 
 const LogoutButton = () => {
   const { setUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const { logout } = useAuthService();
+  const { unsubscribeToPush } = usePushService();
   
   const handleLogout = async () => {
     if (loading) return;

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { dataURLtoBlob, createPost } from "../../services/uploadService";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 import "./NewPost.css";
+import useUploadService from "../../services/uploadService";
 
 const NewPost = ({ image = null, color = null, onUploading = () => {} }) => {
   const [description, setDescription] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { dataURLtoBlob, createPost } = useUploadService();
+
 
   async function upload() {
     try {

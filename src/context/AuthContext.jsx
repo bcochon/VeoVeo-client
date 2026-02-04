@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, useContext } from 'react';
-import { getProfile } from '../services/authService';
 import FirebaseClient from '../services/firebaseCtrl';
+import useAuthService from '../services/authService';
 
 const AuthContext = createContext(null);
 
@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loginModal, setLoginModal] = useState({ isOpen: false });
+
+  const { getProfile } = useAuthService();
 
   useEffect(() => {
     getProfile()

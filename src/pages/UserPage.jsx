@@ -6,8 +6,8 @@ import ProfileContainer from "../components/profile/ProfileContainer";
 import LoadingSpinner from "../components/utils/LoadingSpinner";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getUserData } from "../services/userService";
 import "./Profile.css";
+import useUserService from "../services/userService";
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -15,6 +15,9 @@ const UserPage = () => {
   const [userData, setUserData] = useState(undefined);
   const [selfView, setSelfView] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const { getUserData } = useUserService();
+
 
   useEffect(() => {
     const load = async () => {

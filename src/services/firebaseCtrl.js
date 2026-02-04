@@ -5,7 +5,6 @@ import { getMessaging, getToken, isSupported } from "firebase/messaging";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
 import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
-import { subscribeToPush } from "./pushService.js";
 
 class FirebaseCtrl {
   constructor() {

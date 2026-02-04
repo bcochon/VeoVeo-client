@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
-import { setLikePost } from "../../services/postService";
 import { useAuth } from "../../context/AuthContext";
+import usePostService from "../../services/postService";
 import { useNavigate } from "react-router-dom";
+import PostOptions from "./PostOptions";
+import Modal from "../utils/Modal";
 import "./FeedPost.css";
 
 function FeedPost({ post }) {
   const [liked, setLiked] = useState(post?.liked || false);
   const [likeCount, setLikeCount] = useState(post?.likes || 0);
+  const [optionsOpen, setOptionsOpen] = useState(false);
   const [doubleClickTimer, setDoubleClickTimer] = useState(null);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const { user, openLoginModal } = useAuth();
   const navigate = useNavigate();
 
-  const buildAltText = (post) => 
+  const { setLikePost, deletePost } = usePostService();
+
+  const buildAltText = (post) =>
     `Publicación de ${post?.user?.username}: ${post?.description || 'Sin descripción'}`;
 
   const buildPostHour = (post) => {
@@ -52,9 +58,33 @@ function FeedPost({ post }) {
     setLikeCount(likeCount + 1);
   };
 
+  const openDelete = () => {
+    setOptionsOpen(false);
+    setDeleteOpen(true);
+  }
+
+  const handleDelete = async () => {
+    try {
+      // setLoading(true);
+      setOptionsOpen(false);
+      setDeleteOpen(false);
+      await deletePost(post?.id);
+      navigate("/profile");
+    } catch (err) {
+      console.error(`Error eliminando post:`, err);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
   const goToUser = (e) => {
     e.preventDefault();
     navigate(`/users/${post?.user?.id}`);
+  }
+
+  const openOptions = (e) => {
+    e.preventDefault();
+    setOptionsOpen(true);
   }
 
   return (
@@ -75,7 +105,11 @@ function FeedPost({ post }) {
             <span className="feed-post-time">A las {buildPostHour(post)}</span>
           </div>
         </button>
-        <button type="button" className="feed-post-options">
+        <button
+          type="button"
+          className="feed-post-options"
+          onClick={openOptions}
+        >
           <FontAwesomeIcon icon={faEllipsis} />
         </button>
       </div>
@@ -116,6 +150,23 @@ function FeedPost({ post }) {
         </div>
       </div>
       <div className="feed-post-details"></div>
+      <PostOptions
+        isOpen={optionsOpen}
+        onClose={() => setOptionsOpen(false)}
+        post={post}
+        onDelete={openDelete}
+      />
+      <Modal
+        isOpen={deleteOpen}
+        onClose={() => setDeleteOpen(false)}
+        onConfirm={handleDelete}
+        titl
+        e="¿Querés eliminar esta foto?"
+        message="Esta acción no es irreversible pero todavía no hay configurada una forma de recuperarlo je"
+        confirmText="Eliminar"
+        cancelText="Cancelar"
+        variant="danger"
+      />
     </div>
   );
 }

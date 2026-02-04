@@ -10,7 +10,7 @@
     "deploy": "vite build --mode production && netlify deploy --prod --dir=dist",
     "lint": "eslint .",
     "preview": "vite preview"
-  },
+},
   "dependencies": {
     "@capacitor/android": "^8.0.1",
     "@capacitor/core": "^8.0.1",

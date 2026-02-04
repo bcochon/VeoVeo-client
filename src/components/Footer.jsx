@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faUserCircle, faCamera, faNewspaper, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = ({ currentPage = undefined }) => {
@@ -8,8 +9,8 @@ const Footer = ({ currentPage = undefined }) => {
     <>
       <span className="empty-footer-placeholder" />
       <footer className="main-footer">
-        <a
-          href="/"
+        <Link
+          to="/"
           aria-label="Inicio"
           className={
             "footer-button" +
@@ -17,10 +18,10 @@ const Footer = ({ currentPage = undefined }) => {
           }
         >
           <FontAwesomeIcon icon={faHouse} />
-        </a>
+        </Link>
 
-        <a
-          href="/news"
+        <Link
+          to="/news"
           aria-label="Anuncios"
           className={
             "footer-button" +
@@ -28,18 +29,18 @@ const Footer = ({ currentPage = undefined }) => {
           }
         >
           <FontAwesomeIcon icon={faNewspaper} />
-        </a>
+        </Link>
 
-        <a
-          href="/camera"
+        <Link
+          to="/camera"
           aria-label="Subir post"
           className="footer-button footer-main-button"
         >
           <FontAwesomeIcon icon={faCamera} />
-        </a>
+        </Link>
 
-        <a
-          href="/explore"
+        <Link
+          to="/explore"
           aria-label="Explorar"
           className={
             "footer-button" +
@@ -47,10 +48,10 @@ const Footer = ({ currentPage = undefined }) => {
           }
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </a>
+        </Link>
 
-        <a
-          href="/profile"
+        <Link
+          to="/profile"
           aria-label="Mi perfil"
           className={
             "footer-button" +
@@ -58,7 +59,7 @@ const Footer = ({ currentPage = undefined }) => {
           }
         >
           <FontAwesomeIcon icon={faUserCircle} />
-        </a>
+        </Link>
       </footer>
     </>
   );

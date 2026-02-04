@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getPost } from "../services/postService";
 import FeedPost from "./feed/FeedPost";
 import LoadingSpinner from "./utils/LoadingSpinner";
+import usePostService from "../services/postService";
 import "./PostDetails.css";
 
 const PostDetails = ({ postId }) => {
   const [post, setPost] = useState(undefined);
   const [loading, setLoading] = useState(true);
+
+  const { getPost } = usePostService();
 
   useEffect(() => {
     const load = async () => {
