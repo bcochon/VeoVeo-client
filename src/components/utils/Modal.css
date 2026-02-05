@@ -23,7 +23,7 @@
   animation: modal-slide-up 0.3s ease-out;
 }
 
-.modal-close {
+.modal-container .modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -38,17 +38,17 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
-.modal-close:hover {
+.modal-container .modal-close:hover {
   background-color: #f3f4f6;
   color: #1f2937;
 }
 
-.modal-content {
+.modal-container .modal-content {
   padding: 2rem;
   text-align: center;
 }
 
-.modal-icon {
+.modal-container .modal-icon {
   width: 4rem;
   height: 4rem;
   margin: 0 auto 1.5rem;
@@ -58,27 +58,27 @@
   justify-content: center;
 }
 
-.modal-icon-danger {
+.modal-container .modal-icon-danger {
   background-color: #fee2e2;
   color: #dc2626;
 }
 
-.modal-icon-warb {
+.modal-container .modal-icon-warn {
   background-color: #fefee2;
   color: #dcc126;
 }
 
-.modal-icon-success {
+.modal-container .modal-icon-success {
   background-color: rgb(220, 252, 231);
   color: #16a34a;
 }
 
-.modal-icon-info {
+.modal-container .modal-icon-info {
   background-color: rgb(var(--alternative-color-rgb)/0.7);
   color: var(--light-color);
 }
 
-.modal-title {
+.modal-container .modal-title {
   width: 100%;
   text-align: center;
   font-size: 1.5rem;
@@ -87,18 +87,18 @@
   margin: 0 0 0.75rem 0;
 }
 
-.modal-message {
+.modal-container .modal-message {
   color: var(--light-color);
   line-height: 1.5;
   margin: 0 0 2rem 0;
 }
 
-.modal-actions {
+.modal-container .modal-actions {
   display: flex;
   gap: 0.75rem;
 }
 
-.modal-btn {
+.modal-container .modal-btn {
   flex: 1;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -109,53 +109,53 @@
   font-size: 1rem;
 }
 
-.modal-btn:active {
+.modal-container .modal-btn:active {
   transform: scale(0.98);
 }
 
-.modal-btn-cancel {
-  background-color: white;
-  color: #374151;
-  border: 1px solid #d1d5db;
+.modal-container .modal-btn-cancel {
+  background-color: var(--disabled-color);
+  color: white;
+  border: 1px solid #d1d5db85;
 }
 
-.modal-btn-cancel:hover {
+.modal-container .modal-btn-cancel:hover {
   background-color: #f9fafb;
 }
 
-.modal-btn-danger {
+.modal-container .modal-btn-danger {
   background-color: #dc2626;
   color: white;
 }
 
-.modal-btn-danger:hover {
+.modal-container .modal-btn-danger:hover {
   background-color: #b91c1c;
 }
 
-.modal-btn-warn {
+.modal-container .modal-btn-warn {
   background-color: #dcbe26;
   color: white;
 }
 
-.modal-btn-warn:hover {
+.modal-container .modal-btn-warn:hover {
   background-color: #b9a41c;
 }
 
-.modal-btn-success {
+.modal-container .modal-btn-success {
   background-color: #16a34a;
   color: white;
 }
 
-.modal-btn-success:hover {
+.modal-container .modal-btn-success:hover {
   background-color: #15803d;
 }
 
-.modal-btn-info {
+.modal-container .modal-btn-info {
   background-color: rgb(var(--alternative-color-rgb)/0.7);;
   color: white;
 }
 
-.modal-btn-info:hover {
+.modal-container .modal-btn-info:hover {
   background-color: rgb(var(--alternative-color-rgb)/0.5);;
 }
 

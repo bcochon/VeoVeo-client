@@ -38,12 +38,25 @@ export default function Modal({
     }
   };
 
+  const closeModal = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (onClose && typeof onClose === 'function')
+      onClose();
+  }
+
+  const confirmModal = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (onConfirm && typeof onConfirm === "function") onConfirm();
+  };
+
   const { icon: Icon, iconClass, buttonClass } = config[variant];
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>
+        <button className="modal-close" onClick={closeModal}>
           <X size={20} />
         </button>
 
@@ -64,13 +77,13 @@ export default function Modal({
           </p>
 
           <div className="modal-actions">
-            <button className="modal-btn modal-btn-cancel" onClick={onClose}>
+            <button className="modal-btn modal-btn-cancel" onClick={closeModal}>
               {cancelText}
             </button>
             {onConfirm && (
               <button
                 className={`modal-btn ${buttonClass}`}
-                onClick={onConfirm}
+                onClick={confirmModal}
               >
                 {confirmText}
               </button>

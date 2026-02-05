@@ -90,18 +90,18 @@ const usePostService = () => {
 
   async function deletePost(postId) {
     console.log(`Eliminando post ${postId}`);
-    // const response = await requestWithTokenRetry(
-    //   `${config.serverUrl}/posts/${postId}`,
-    //   {
-    //     method: "DELETE",
-    //     credentials: "include",
-    //   },
-    // );
-    // if (!response.ok) {
-    //   throw new Error(
-    //     `Servidor respondió ${response.status} ${response.statusText}`,
-    //   );
-    // }
+    const response = await requestWithTokenRetry(
+      `${config.serverUrl}/posts/${postId}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      },
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
+    }
   }
 
   return { 

@@ -35,14 +35,22 @@ function FeedContainer() {
   }, [colorDay]);
 
   if (loading) return (
-    <section className="feed-container">
+    <section className="feed-container full-height">
       <LoadingSpinner label=''/>
+    </section>
+  );
+
+  if (!posts || posts.length < 1) return (
+    <section className="feed-container full-height">
+      <div className="placeholder-message">
+        <p>Parece que nadie publicó nada hoy... ¿Y si sos el primero?</p>
+      </div>
     </section>
   );
 
   return (
     <section className="feed-container">
-      {posts?.length > 0 ? (
+      {(
         posts.map((post) => (
           <Link
             to={`/posts/${post?.id}`}
@@ -53,10 +61,6 @@ function FeedContainer() {
             <FeedPost post={post} />
           </Link>
         ))
-      ) : (
-        <div className="placeholder-message">
-          <p>Parece que nadie publicó nada hoy... ¿Y si sos el primero?</p>
-        </div>
       )}
     </section>
   );

@@ -1,10 +1,22 @@
-.logo-background {
-  fill: transparent;
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-layer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo-star {
   fill: rgb(var(--primary-color-rgb)/0.85);
   transition: fill 0.5s;
+  transform-box: view-box;
+  transform-origin: center;
 }
 
 .logo-body {
@@ -13,4 +25,13 @@
 
 .logo-eyes {
   fill: #f8f5e6;
+}
+
+@keyframes pressLogo {
+  from {
+    transform: rotate(0deg) translate(-15.85px, -61.97px);
+  }
+  to {
+    transform: rotate(180deg) translate(-15.85px, -61.97px);
+  }
 }

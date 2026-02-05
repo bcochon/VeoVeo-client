@@ -147,7 +147,8 @@ const useUploadService = () => {
     }
     console.log("Publicación creada en servidor");
 
-    return await response.json();
+    const content = await response.json();
+    return content.data;
   }
 
   return {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./NewPost.css";
 import useUploadService from "../../services/uploadService";
 
-const NewPost = ({ image = null, color = null, onUploading = () => {} }) => {
+const NewPost = ({ image = null, color = null, onUploading = () => {}, onCancel = () => {} }) => {
   const [description, setDescription] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,18 +18,13 @@ const NewPost = ({ image = null, color = null, onUploading = () => {} }) => {
       onUploading(true);
       const blob = dataURLtoBlob(image);
       const newPost = await createPost(blob, color, description);
-      navigate("/profile");
+      navigate(`/posts/${newPost?.id}`);
     } catch(err) {
       console.error('Error subiendo imagen:', err);
     } finally {
       setLoading(false);
       onUploading(false);
     }
-  }
-
-  const handleCancelar = () => {
-    setLoading(true);
-    navigate("/");
   }
 
   if (loading) return (
@@ -43,10 +38,18 @@ const NewPost = ({ image = null, color = null, onUploading = () => {} }) => {
       {image && (
         <img src={image} alt="Foto de nuevo post" className="preview-image" />
       )}
+      <textarea
+        className="description-input"
+        type="text" 
+        placeholder="Descripción de la imagen..." 
+        name="Descripcion"
+        maxLength={128} 
+        onChange={(e) => setDescription(e?.target?.value)} 
+      />
       <div className="new-post-actions">
-        {/* <button type="button" onClick={handleCancelar} disabled={loading}>
+        <button type="button" onClick={onCancel} disabled={loading}>
           Volver
-        </button> */}
+        </button>
         <button type="button" onClick={upload} disabled={loading}>
           {loading ? "Subiendo..." : "Subir"}
         </button>

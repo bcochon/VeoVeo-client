@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  background-color: rgb(var(--primary-color-rgb)/0.25);
+  background-color: rgb(var(--primary-color-rgb)/0.5);
 }
 
 .upload-container .upload-header {
@@ -29,4 +29,31 @@
 .upload-container .back-button:hover {
   color: rgb(var(--light-color-rgb)/0.75);
   background-color: rgb(var(--light-color-rgb)/0.05);
+}
+
+.upload-container .back-button:focus {
+  border: none;
+  outline: none;
+}
+
+.upload-container .today-color-container {
+  margin: 0.25rem 0;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.upload-container .today-color-container h2 {
+  font-weight: 600;
+  font-size: min(200%, 5vw);
+  width: 100%;
+  margin: 0;
+}
+
+.upload-container .today-color {
+  font-weight: 700;
+  display: block;
+  width: 100%;
+  font-style: italic;
+  color: var(--primary-color);
+  font-size: min(200%, 6vw);
 }

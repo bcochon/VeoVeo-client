@@ -1,3 +1,4 @@
 .post-details-container {
+  min-height: fit-content;
   height: 100%;
 }

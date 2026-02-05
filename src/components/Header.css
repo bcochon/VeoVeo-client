@@ -45,6 +45,7 @@
 
 .main-header:has(.main-logo:hover) .logo-star {
   fill: var(--light-color);
+  animation: pressLogo 1s ease-in-out forwards;
 }
 
 .main-header .header-button svg {

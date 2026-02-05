@@ -96,7 +96,7 @@ function FeedPost({ post }) {
           className="feed-post-user-details"
         >
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOFneGOyzd0Mnt9VzYVFrwSMtOrloq_DJTBA&s"
+            src="./placeholder.jpg"
             alt="Foto del usuario"
             className="user-picture"
           />
@@ -140,16 +140,22 @@ function FeedPost({ post }) {
           <span className="post-like-count">{likeCount}</span>
         </div>
         <div className="feed-post-action feed-post-comments">
-          <button
+          {/* <button
             type="button"
             className="feed-post-action-button"
             aria-label="Comentarios"
           >
             <FontAwesomeIcon icon={faComment} />
-          </button>
+          </button> */}
         </div>
       </div>
-      <div className="feed-post-details"></div>
+      <div className="feed-post-details">
+        { post?.description &&
+          <p className="post-description">
+            <h5>{post?.user?.username}</h5> {post?.description}
+          </p>
+        }
+      </div>
       <PostOptions
         isOpen={optionsOpen}
         onClose={() => setOptionsOpen(false)}
@@ -160,8 +166,7 @@ function FeedPost({ post }) {
         isOpen={deleteOpen}
         onClose={() => setDeleteOpen(false)}
         onConfirm={handleDelete}
-        titl
-        e="¿Querés eliminar esta foto?"
+        title="¿Querés eliminar esta foto?"
         message="Esta acción no es irreversible pero todavía no hay configurada una forma de recuperarlo je"
         confirmText="Eliminar"
         cancelText="Cancelar"

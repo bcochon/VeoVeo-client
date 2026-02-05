@@ -102,3 +102,21 @@
 .feed-post-container .feed-post-like-button.liked {
   color: var(--alternative-color);
 }
+
+.feed-post-container .feed-post-details {
+  width: 90%;
+  height: min-content;
+  text-align: left;
+}
+
+.feed-post-container .post-description {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.feed-post-container .post-description h5 {
+  display: inline;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+}

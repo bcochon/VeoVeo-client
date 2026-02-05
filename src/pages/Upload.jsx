@@ -18,29 +18,43 @@ const Upload = () => {
     if(photo) {
       navigate("/camera");
       setPhoto(null);
-    };
-    navigate("/");
+    } else {
+      navigate("/");
+    }
   }
 
   return (
     <main className="upload-container">
       <header className="upload-header fixed-top">
         {!uploading && (
-          <button
-            type="button"
-            onClick={handleBack}
-            aria-label="Volver"
-            className="back-button"
-          >
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={handleBack}
+              aria-label="Volver"
+              className="back-button"
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <div className="today-color-container">
+              <h2>El color de hoy es</h2>
+              <span className="today-color">
+                {colorDay?.color?.name?.toUpperCase()}
+              </span>
+            </div>
+          </>
         )}
       </header>
 
       {!photo ? (
         <Camera onCapture={setPhoto} />
       ) : (
-        <NewPost image={photo} color={colorDay} onUploading={setUploading} />
+        <NewPost
+          image={photo}
+          color={colorDay}
+          onUploading={setUploading}
+          onCancel={handleBack}
+        />
       )}
     </main>
   );

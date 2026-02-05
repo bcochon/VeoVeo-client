@@ -48,7 +48,7 @@ function ProfileContainer({ userData }) {
         <Link to="/profile" className="profile-picture-link">
           <img
             className="profile-picture"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOFneGOyzd0Mnt9VzYVFrwSMtOrloq_DJTBA&s"
+            src="./placeholder.jpg"
             alt="Foto de perfil"
           />
         </Link>

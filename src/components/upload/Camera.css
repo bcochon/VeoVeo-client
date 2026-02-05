@@ -16,41 +16,20 @@
   align-items: center;
 }
 
-.camera-container .today-color-container {
-  width: 95%;
-  margin: 1.75rem 0;
-  max-height: 20%;
-}
-
-.camera-container .today-color-container h2 {
-  font-weight: 600;
-  font-size: min(300%, 7vw);
-  width: 100%;
-  text-align: left;
-  margin: 0;
-}
-
-.camera-container .today-color {
-  font-weight: 700;
-  display: block;
-  width: 100%;
-  font-style: italic;
-  color: var(--primary-color);
-  font-size: min(500%, 11vw);
-  text-align: right;
-}
-
 .camera-container .camera, .camera-container .camera-placeholder {
   border-radius: 2rem;
   width: 100%;
   max-height: 80%;
-  background-color: var(--primary-color);
+  background-color: rgb(var(--primary-color-rgb)/0.5);
   /* box-shadow: 0 0 20px rgb(var(--primary-color-rgb)/0.5); */
 }
 
+.camera-container .camera.hidden {
+  display: none;
+}
+
 .camera-container .camera-placeholder {
-  height: 50%;
-  background: var(--background);
+  height: 70%;
   border: solid 2px var(--light-color);
   display: flex;
   flex-direction: column;
@@ -63,18 +42,49 @@
 
 .camera-container .camera-actions {
   max-height: 15%;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.camera-container .capture-button {
+.camera-container .action-button {
   border-radius: 100%;
   margin-bottom: 2.5rem;
   height: 5rem;
   aspect-ratio: 1;
+  background: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-container .action-button svg {
+  width: 70%;
+  height: 70%;
+}
+
+.camera-container .action-button:hover {
+  background-color: rgb(var(--light-color-rgb) / 0.075);
+}
+
+.camera-container .capture-button {
   background-color: var(--light-color);
   border: solid 2px rgba(0, 0, 0, 0.5);
 }
 
 .camera-container .capture-button:hover {
   background-color: rgb(var(--light-color-rgb) / 0.85);
-  transition: background-color 0.2s;
+}
+
+.camera-container .action-button input {
+  display: none;
+}
+
+.camera-container button:focus {
+  border: none;
+  outline: none;
 }
