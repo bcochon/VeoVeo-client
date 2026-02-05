@@ -1,5 +1,5 @@
 import { config } from '../config.js'
-import useAuthService from './authService.js';
+import { useAuthService } from './authService.js';
 
 const useUserService = () => {
   const { requestWithTokenRetry } = useAuthService();

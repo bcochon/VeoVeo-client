@@ -1,5 +1,5 @@
 import { config } from '../config.js'
-import useAuthService from './authService.js';
+import { useAuthService } from './authService.js';
 
 const usePostService = () => {
   const { requestWithTokenRetry } = useAuthService();
@@ -50,6 +50,10 @@ const usePostService = () => {
   }
 
   async function getUserPosts(user, page = 0, limit = 10) {
+    if (!user) {
+      console.warn('Asked for user posts without specifying user');
+      return [];
+    }
     return await getPosts({ user, page, limit });
   }
 

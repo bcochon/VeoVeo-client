@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Browser } from "@capacitor/browser";
+import { Capacitor } from "@capacitor/core";
 import Modal from "../utils/Modal";
 
 const LoginModal = () => {
-  const { loginModal } = useAuth();
-  const navigate = useNavigate();
+  const [modalLoading, setModalLoading] = useState(false);
+  const { loginModal, loginWithRedirect, loading } = useAuth();
+
+  const login = async () => {
+    setModalLoading(true);
+    if (Capacitor.isNativePlatform())
+      Browser.addListener("browserFinished", () => {
+        console.log("Login finished");
+        setModalLoading(false);
+      });
+    await loginWithRedirect();
+  };
 
   const onConfirm = () => {
+    if (modalLoading) return;
     loginModal?.onClose();
-    navigate("/login");
+    login();
   }
 
   return (
@@ -21,7 +33,9 @@ const LoginModal = () => {
       cancelText={loginModal?.cancelText}
       variant={loginModal?.variant}
       onConfirm={onConfirm}
-      confirmText={loginModal?.confirmText}
+      confirmText={
+        modalLoading || loading ? "Cargando..." : loginModal?.confirmText
+      }
     />
   );
 }

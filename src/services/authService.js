@@ -1,137 +1,79 @@
-import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
-import { Capacitor } from '@capacitor/core';
+import { Capacitor } from "@capacitor/core";
+import { useAuth } from "../context/AuthContext";
+import { config } from "../config";
 
-const useAuthService = () => {
+export const useAuthService = () => {
+  const { getAccessToken, refreshAccessToken } = useAuth();
+
   function isCapacitor() {
     return Capacitor.isNativePlatform();
   }
 
-  const ACCESS_KEY = "access_token";
-  const REFRESH_KEY = "refresh_token";
-
-  async function setCapacitorSecrets(secrets) {
-    if (secrets?.accessToken)
-      await SecureStoragePlugin.set({
-        key: ACCESS_KEY,
-        value: secrets?.accessToken,
-      });
-
-    if (secrets?.refreshToken)
-      await SecureStoragePlugin.set({
-        key: REFRESH_KEY,
-        value: secrets?.refreshToken,
-      });
-  }
-
-  async function requestWithTokenRetry(input, init = {}) {
-    if (isCapacitor()) {
-      const accessToken = await SecureStoragePlugin
-        .get({ key: ACCESS_KEY })
-        .catch((err) => {
-          console.error('No se pudo obtener el access token de Secure Storage', err);
-          return null;
-        });
-      const authHeader = { Authorization: `Bearer ${accessToken.value}` };
-      if (accessToken?.value)
-        init.headers = init.headers ? {
-          ...init.headers,
-          ...authHeader,
-        } : authHeader;
+  const requestAuthenticated = async (input, init = {}) => {
+    const accessToken = await getAccessToken().catch(err => console.error(err));
+    if (accessToken) {
+      const authHeader = { Authorization: `Bearer ${accessToken}` };
+      init.headers = init.headers
+        ? {
+            ...init.headers,
+            ...authHeader,
+          }
+        : authHeader;
+    } else {
+      console.warn('Se llamará sin autenticar a:', input)
     }
-    const response = await fetch(input, init);
+    
+    return await fetch(input, init);
+  };
 
-    if (response.status === 401) {
-      console.log('Refrescando token...');
-      if (isCapacitor()) {
-        const refreshToken = await SecureStoragePlugin
-          .get({ key: REFRESH_KEY })
-          .catch((err) => {
-            console.error('No se pudo obtener el refresh token de Secure Storage', err);
-            return null;
-          });
-        const response = await fetch(new URL(`${import.meta.env.VITE_SERVER_URL}/auth/refresh`), {
-          method: 'POST',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ refreshToken: refreshToken.value }),
-        });
-        if (!response.ok)
-          throw new Error(`${response.status} ${response.statusText}`);
-        const responseData = await response.json();
-        await setCapacitorSecrets({ accessToken: responseData?.data?.access_token });
-      }
-      else {
-        await fetch(new URL(`${import.meta.env.VITE_SERVER_URL}/auth/refresh`), {
-          method: 'POST',
-          credentials: 'include',
-        });
-      }
-      return await fetch(input, init);
+  const requestWithTokenRetry = async (input, init = {}) => {
+    const response = await requestAuthenticated(input, init);
+
+    if (response.status === 401 && isCapacitor()) {
+      console.log("Refrescando token...");
+      await refreshAccessToken();
+      return await requestAuthenticated(input, init);
     }
 
     return response;
-  }
-
-  async function login(username, password) {
-    const url = new URL(`${import.meta.env.VITE_SERVER_URL}/auth/login`);
-
-    const response = await fetch(url, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    if (!response.ok)
-      throw new Error(`${response.status} ${response.statusText}`);
-
-    const responseData = await response.json();
-
-    if (isCapacitor()) {
-      await setCapacitorSecrets({
-        accessToken: responseData?.data?.access_token,
-        refreshToken: responseData?.data?.refresh_token,
-      });
-    }
-  }
-
-  async function logout() {
-    const url = new URL(`${import.meta.env.VITE_SERVER_URL}/auth/logout`);
-
-    const response = await requestWithTokenRetry(url, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (!response.ok)
-      throw new Error(
-        `Error cerrando sesión: ${response.status} ${response.statusText}`,
-      );
-
-    if (isCapacitor()) {
-      await SecureStoragePlugin.remove({ key: "access_token" });
-      await SecureStoragePlugin.remove({ key: "refresh_token" });
-    }
-  }
+  };
 
   async function getProfile() {
-    const url = new URL(`${import.meta.env.VITE_SERVER_URL}/auth/profile`);
-
-    const response = await requestWithTokenRetry(url, {
-      credentials: "include",
-    });
-
-    if (!response.ok)
-      throw new Error(
-        `Error obteniendo perfil: ${response.status} ${response.statusText}`,
-      );
-
-    return (await response.json())?.data;
+    const response = await requestWithTokenRetry(
+      `${config.serverUrl}/auth/profile`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+    if (!response.ok) {
+      throw new Error(`Servidor respondió ${response.status} ${response.statusText}`);
+    }
+    const content = await response.json();
+    return content?.data;
   }
 
-  return { requestWithTokenRetry, login, logout, getProfile }
+  async function signUp(username, email) {
+    const registrationDto = { username }
+    if (email) registrationDto.email = email;
 
-}
+    const response = await requestWithTokenRetry(
+      `${config.serverUrl}/auth/register`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(registrationDto),
+      },
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
+    }
+    const content = await response.json();
+    return content?.data;
+  }
 
-export default useAuthService;
+  return { requestWithTokenRetry, getProfile, signUp };
+};

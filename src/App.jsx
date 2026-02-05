@@ -11,12 +11,24 @@ import './App.css'
 import 'leaflet/dist/leaflet.css';
 import PostView from "./pages/PostView";
 import UserPage from "./pages/UserPage";
+import { useProfile } from "./context/ProfileContext";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
+  const { profile, profileLoading } = useProfile();
 
-  if (loading) return null;
-  if (!user) return <Navigate to="/login" />;
+  if (loading || profileLoading) return null;
+  if (!user || !profile) return <Navigate to="/login" />;
+
+  return children;
+}
+
+function PublicRoute({ children }) {
+  const { user, loading } = useAuth();
+  const { profile, profileLoading } = useProfile();
+
+  if (loading || profileLoading) return null;
+  if (user && !profile) return <Navigate to="/login" />;
 
   return children;
 }
@@ -26,8 +38,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/news" element={<News />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Home />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/news"
+          element={
+            <PublicRoute>
+              <News />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/camera"
           element={
@@ -36,7 +62,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/explore" element={<Explore />} />
+        <Route
+          path="/explore"
+          element={
+            <ProtectedRoute>
+              <Explore />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/profile"
           element={
@@ -57,13 +90,27 @@ function App() {
           path="/settings"
           element={
             <ProtectedRoute>
-              <Home />
+              <Login />
             </ProtectedRoute>
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/users/:userId" element={<UserPage />} />
-        <Route path="/posts/:postId" element={<PostView />} />
+        <Route
+          path="/users/:userId"
+          element={
+            <ProtectedRoute>
+              <UserPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/posts/:postId"
+          element={
+            <PublicRoute>
+              <PostView />
+            </PublicRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

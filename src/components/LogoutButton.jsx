@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import useAuthService from "../services/authService.js";
 import usePushService from "../services/pushService.js";
 import { useAuth } from "../context/AuthContext";
 
-const LogoutButton = () => {
-  const { setUser } = useAuth();
+const LogoutButton = ({ label = 'Cerrar sesión', loadingLabel = 'Cerrando sesión...', className = '' }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { logout } = useAuthService();
+  const { logout } = useAuth();
   const { unsubscribeToPush } = usePushService();
   
   const handleLogout = async () => {
@@ -17,8 +15,11 @@ const LogoutButton = () => {
       setError(null);
       setLoading(true);
       await unsubscribeToPush();
-      await logout();
-      setUser(null);
+      await logout({
+        logoutParams: {
+          returnTo: window.location.origin,
+        },
+      });
     } catch (err) {
       alert(`Error cerrando sesión: ${err}`);
       setError(err);
@@ -28,8 +29,8 @@ const LogoutButton = () => {
   }
 
   return (
-    <button onClick={handleLogout} disabled={loading}>
-      {loading? 'Cerrando sesión...' : 'Cerrar sesión'}
+    <button onClick={handleLogout} disabled={loading} className={className}>
+      {loading? loadingLabel : label}
     </button>
   )
 }

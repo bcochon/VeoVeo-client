@@ -1,60 +1,79 @@
-import { useState } from 'react';
-import useAuthService from '../services/authService';
-import usePushService from '../services/pushService';
-import { useAuth } from '../context/AuthContext';
-import './LoginForm.css';
+import React, { useState } from "react";
+import "./LoginForm.css";
+import { useAuth } from "../context/AuthContext";
+import { Browser } from "@capacitor/browser";
+import { Capacitor } from "@capacitor/core";
+import { useProfile } from "../context/ProfileContext";
+import LogoutButton from "./LogoutButton";
+import { useAuthService } from "../services/authService";
 
 export default function LoginForm() {
-  const { setUser } = useAuth();
+  const [username, setUsername] = useState(undefined);
+  const [formLoading, setLoading] = useState(false);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { loginWithRedirect, loading, isAuthenticated, user } = useAuth();
+  const { profile, setProfile, profileLoading } = useProfile();
+  const { signUp } = useAuthService();
 
-  const { login, getProfile } = useAuthService();
-  const { subscribeToPush } = usePushService();
-
-  async function handleSubmit(e) {
-    e.preventDefault(); // ⛔ stop page reload
-    setError(null);
+  const login = async () => {  
     setLoading(true);
+    if (Capacitor.isNativePlatform())
+      Browser.addListener("browserFinished", () => {
+        console.log("Login finished");
+        setLoading(false);
+      });
+    await loginWithRedirect();
+  };
 
+  const crearCuenta = async () => {
     try {
-      await login(username, password);
-      const profile = await getProfile();
-      setUser(profile);
-      await subscribeToPush();
+      setLoading(true);
+      const newUser = await signUp(username, user?.email);
+      setProfile(newUser);
     } catch (err) {
-      setError(`${err}`);
+      console.error(err);
     } finally {
       setLoading(false);
     }
   }
 
-  return (
-    <form className='login-form' onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Usuario"
-        required
-      />
+  if (loading || profileLoading) return null;
 
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Contraseña"
-        required
-      />
-
-      <button type="submit" disabled={loading}>
-        {loading ? 'Accediendo...' : 'Acceder'}
+  if (!isAuthenticated) return (
+    <div className="login-container">
+      <button disabled={formLoading} onClick={login}>
+        {(formLoading || loading) ? "Cargando..." : "Acceder"}
       </button>
+    </div>
+  );
 
-      {error && <p>{error}</p>}
+  if (!profile) return (
+    <form className="signup-container">
+      <h2>Terminá de crear tu cuenta</h2>
+      <div className="username-input">
+        <label htmlFor="usernameInput">Nombre de usuario:</label>
+        <input
+          id="usernameInput"
+          name="username"
+          type="text"
+          required
+          value={username}
+          onChange={(e) => setUsername(e?.target?.value)}
+          minLength={1}
+          maxLength={16}
+          placeholder={user?.nickname}
+          pattern="^\S+$"
+        />
+      </div>
+
+      <div className="signup-actions">
+        {!formLoading && (
+          <LogoutButton label="Descartar" loadingLabel="Cargando..." />
+        )}
+        <button type="submit" disabled={formLoading} onClick={crearCuenta}>
+          Crear cuenta
+        </button>
+      </div>
     </form>
   );
 }

@@ -10,9 +10,12 @@
     "deploy": "vite build --mode production && netlify deploy --prod --dir=dist",
     "lint": "eslint .",
     "preview": "vite preview"
-},
+  },
   "dependencies": {
+    "@auth0/auth0-react": "^2.13.0",
     "@capacitor/android": "^8.0.1",
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/browser": "^8.0.0",
     "@capacitor/core": "^8.0.1",
     "@capacitor/push-notifications": "^8.0.0",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
@@ -21,6 +24,7 @@
     "@fortawesome/react-fontawesome": "^3.1.1",
     "capacitor-secure-storage-plugin": "^0.13.0",
     "firebase": "^12.8.0",
+    "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
