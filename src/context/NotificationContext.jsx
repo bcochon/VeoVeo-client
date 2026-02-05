@@ -70,10 +70,10 @@ export const NotificationsProvider = ({ children }) => {
     FirebaseClient.onAllowed(setAllowed);
   }, [notifications]);
 
-  useEffect(() => {
-    const updateNotificationsAvailable = () => setNotificationsAvailable((!ignoreAllowed &&!allowed && user) || (notifications?.length > 0));
-    updateNotificationsAvailable();
-  }, [notifications, allowed, user, ignoreAllowed]);
+  // useEffect(() => {
+  //   const updateNotificationsAvailable = () => setNotificationsAvailable((!ignoreAllowed && !allowed && user) || (notifications?.length > 0));
+  //   updateNotificationsAvailable();
+  // }, [notifications, allowed, user, ignoreAllowed]);
 
   return (
     <NotificationContext.Provider value={{ getNotification, discardNotification, notificationsAvailable, allowed }}>

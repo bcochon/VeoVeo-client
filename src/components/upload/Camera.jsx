@@ -81,6 +81,7 @@ const Camera = ({ onCapture = () => {} }) => {
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
+          mirrored={frontCamera}
           videoConstraints={{
             facingMode: frontCamera ? "user" : "environment",
           }}
