@@ -61,5 +61,6 @@
 }
 
 .empty-footer-placeholder {
-  min-height: 6rem;
+  display: block;
+  height: 6rem;
 }

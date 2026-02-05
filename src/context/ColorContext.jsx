@@ -34,6 +34,18 @@ export const ColorProvider = ({ children }) => {
       && (Math.max(r, g, b) - Math.min(r, g, b)) < 40
   }
 
+  function desaturate(hexValue) {
+    const { r, g, b } = hexToRgb(hexValue);
+    const valueToDesaturateHex = (v) =>
+      Math.round(v * 0.8)
+        .toString(16)
+        .padStart(2, "0");
+    const hexR = valueToDesaturateHex(r);
+    const hexG = valueToDesaturateHex(g);
+    const hexB = valueToDesaturateHex(b);
+    return `#${hexR}${hexG}${hexB}`;
+  }
+
   useEffect(() => {
     const load = async () => {
       setLoadingColor(true);
@@ -41,9 +53,7 @@ export const ColorProvider = ({ children }) => {
         .then((data) => {
           setColorDay(data);
           const color = data?.color;
-          // const color = {
-          //   value: '#FFFF00'
-          // }
+          // color.value = desaturate(color.value);
           console.log("Color del día:", color);
           setPrimaryColor(color);
           if (color?.value) {
@@ -67,7 +77,9 @@ export const ColorProvider = ({ children }) => {
   }, []);
 
   return (
-    <ColorContext.Provider value={{ colorDay, primaryColor, loadingColor }}>
+    <ColorContext.Provider
+      value={{ colorDay, primaryColor, loadingColor, desaturate }}
+    >
       {children}
     </ColorContext.Provider>
   );

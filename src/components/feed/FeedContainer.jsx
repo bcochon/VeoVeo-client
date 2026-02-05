@@ -21,7 +21,7 @@ function FeedContainer() {
       try {
         setLoading(true);
         setError('');
-        const data = await getDayPosts(colorDay.id);
+        const data = await getDayPosts(colorDay.id, 0, 25);
         setPosts(data?.data || []);
       } catch(err) {
         console.error('Error obteniendo posts para feed:', err);

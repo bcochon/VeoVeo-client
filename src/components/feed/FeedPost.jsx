@@ -150,11 +150,11 @@ function FeedPost({ post }) {
         </div>
       </div>
       <div className="feed-post-details">
-        { post?.description &&
+        {post?.description && (
           <p className="post-description">
-            <h5>{post?.user?.username}</h5> {post?.description}
+            <span>{post?.user?.username}</span> {post?.description}
           </p>
-        }
+        )}
       </div>
       <PostOptions
         isOpen={optionsOpen}

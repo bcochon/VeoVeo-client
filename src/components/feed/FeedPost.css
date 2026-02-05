@@ -114,7 +114,7 @@
   font-size: 1rem;
 }
 
-.feed-post-container .post-description h5 {
+.feed-post-container .post-description span {
   display: inline;
   font-size: 1rem;
   margin: 0;
