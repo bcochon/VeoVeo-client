@@ -8,7 +8,7 @@ import { faImages, faRepeat } from "@fortawesome/free-solid-svg-icons";
 
 const Camera = ({ onCapture = () => {} }) => {
   const [accesDenied, setAccessDenied] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [frontCamera, setFrontCamera] = useState(false);
 
   const hiddenFileInput = useRef(null);
@@ -68,12 +68,6 @@ const Camera = ({ onCapture = () => {} }) => {
     }
   };
 
-  if (loading) return (
-    <div className="camera-container">
-      <LoadingSpinner label=""/>
-    </div>
-  );
-
   return (
     <div className="camera-container">
       <div className="video-container">
@@ -88,14 +82,16 @@ const Camera = ({ onCapture = () => {} }) => {
           onUserMediaError={(err) => {
             console.error("Camera error:", err);
             setAccessDenied(true);
+            setLoading(false);
           }}
           onUserMedia={() => {
             console.log("Camera ready");
             setAccessDenied(false);
+            setLoading(false);
           }}
-          className={"camera" + (accesDenied ? " hidden" : "")}
+          className={"camera" + (accesDenied || loading ? " hidden" : "")}
         />
-        {accesDenied && (
+        {accesDenied && !loading && (
           <div className="camera-placeholder">
             <p>
               No pudo cargarse la cámara. <br /> Asegurate de haber habilitado
@@ -124,12 +120,14 @@ const Camera = ({ onCapture = () => {} }) => {
             className="capture-button action-button"
             onClick={capture}
             aria-label="Capturar foto"
+            disabled={loading}
           />
         )}
         <button
           className="switch-camera-button action-button"
           onClick={switchCamera}
           aria-label="Cambiar cámara"
+          disabled={loading}
         >
           <FontAwesomeIcon icon={faRepeat} />
         </button>

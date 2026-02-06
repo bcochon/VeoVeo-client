@@ -71,6 +71,7 @@
   max-width: 95%;
   border-radius: 2rem;
   box-shadow: -0.25px -0.2px 5px rgb(var(--primary-color-rgb)/0.25);
+  cursor: default;
 }
 
 .feed-post-container .feed-post-actions {

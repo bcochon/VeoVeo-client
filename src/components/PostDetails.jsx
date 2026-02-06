@@ -10,6 +10,21 @@ const PostDetails = ({ postId }) => {
 
   const { getPost } = usePostService();
 
+  function getBackgroundColor() {
+    const postColor = post?.colorDay?.color?.value;
+    if (!postColor) return 'transparent';
+    return postColor + '80';
+  }
+
+  function getStyle() {
+    const style = {
+      backgroundColor: getBackgroundColor(),
+    }
+    const color = post?.colorDay?.color?.value
+    if (color) style['--alternative-color'] = color;
+    return style;
+  }
+
   useEffect(() => {
     const load = async () => {
       try {
@@ -33,8 +48,8 @@ const PostDetails = ({ postId }) => {
   );
 
   return (
-    <section className="post-details-container">
-      { post && <FeedPost post={post}/>}
+    <section className="post-details-container" style={getStyle()}>
+      {post && <FeedPost post={post} />}
     </section>
   );
 }
