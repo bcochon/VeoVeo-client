@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css';
 import PostView from "./pages/PostView";
 import UserPage from "./pages/UserPage";
 import { useProfile } from "./context/ProfileContext";
+import ColorExplore from "./pages/ColorExplore";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -67,6 +68,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Explore />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/colors/:colorId"
+          element={
+            <ProtectedRoute>
+              <ColorExplore />
             </ProtectedRoute>
           }
         />

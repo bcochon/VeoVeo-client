@@ -49,6 +49,10 @@ const usePostService = () => {
     return await getPosts({ colorDay, page, limit });
   }
 
+  async function getColorPosts(color, page = 0, limit = 10) {
+    return await getPosts({ color, page, limit });
+  }
+
   async function getUserPosts(user, page = 0, limit = 10) {
     if (!user) {
       console.warn('Asked for user posts without specifying user');
@@ -112,6 +116,7 @@ const usePostService = () => {
     getPost,
     getPosts,
     getDayPosts,
+    getColorPosts,
     getUserPosts,
     setLikePost,
     setReportPost,

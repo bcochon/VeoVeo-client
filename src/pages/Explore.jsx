@@ -32,11 +32,13 @@ const Explore = () => {
   return (
     <main className="explore-container">
       <SearchBar />
+      <h2>Explorar por colores</h2>
       <section className="colors-container">
         {availableColors.map((color) => (
           <Link
             className="color-link"
             key={color?.id}
+            to={`/colors/${color?.id}`}
             style={{
               backgroundColor: desaturate(color?.value),
               boxShadow: `0 0 10px ${color?.value}`,

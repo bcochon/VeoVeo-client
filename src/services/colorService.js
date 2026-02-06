@@ -1,6 +1,9 @@
 import { config } from '../config.js'
+import { useAuthService } from './authService.js';
 
 const useColorService = () => {
+  const { requestWithTokenRetry } = useAuthService();
+
   async function getTodayColor() {
     console.log('Obteniendo color del día');
 
@@ -10,6 +13,26 @@ const useColorService = () => {
     });
     if (!response.ok) {
       throw new Error(`Servidor respondió ${response.status} ${response.statusText}`);
+    }
+    const content = await response.json();
+    return content.data;
+  }
+
+  async function getColor(id) {
+    if (!id) return null;
+    console.log(`Obteniendo datos del color ${id}`);
+
+    const response = await requestWithTokenRetry(
+      `${config.serverUrl}/colors/${id}`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
     }
     const content = await response.json();
     return content.data;
@@ -34,7 +57,7 @@ const useColorService = () => {
     return content.data;
   }
 
-  return { getTodayColor, getColors };
+  return { getTodayColor, getColor, getColors };
 }
 
 export default useColorService;
