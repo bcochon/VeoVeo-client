@@ -60,6 +60,12 @@
   color: var(--dark-color);
 }
 
+.main-footer .user-picture {
+  border-radius: 100%;
+  width: 75%;
+  aspect-ratio: 1;
+}
+
 .empty-footer-placeholder {
   display: block;
   height: 6rem;

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import PostOptions from "./PostOptions";
 import Modal from "../utils/Modal";
 import "./FeedPost.css";
+import { useProfile } from "../../context/ProfileContext";
 
 function FeedPost({ post }) {
   const [liked, setLiked] = useState(post?.liked || false);
@@ -15,6 +16,7 @@ function FeedPost({ post }) {
   const [doubleClickTimer, setDoubleClickTimer] = useState(null);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const { user, openLoginModal } = useAuth();
+  const { profile } = useProfile();
   const navigate = useNavigate();
 
   const { setLikePost, deletePost } = usePostService();
@@ -99,7 +101,7 @@ function FeedPost({ post }) {
           className="feed-post-user-details"
         >
           <img
-            src="./placeholder.jpg"
+            src={profile?.profilePicture?.url || "./placeholder.jpg"}
             alt="Foto del usuario"
             className="user-picture"
           />

@@ -3,8 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faUserCircle, faCamera, faNewspaper, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { useProfile } from "../context/ProfileContext";
 
 const Footer = ({ currentPage = undefined }) => {
+  const { profile } = useProfile();
+
   return (
     <>
       <span className="empty-footer-placeholder" />
@@ -58,7 +61,15 @@ const Footer = ({ currentPage = undefined }) => {
             (currentPage === "profile" ? " selected" : " disabled")
           }
         >
-          <FontAwesomeIcon icon={faUserCircle} />
+          {profile ? (
+            <img
+              src={profile?.profilePicture?.url || "./placeholder.jpg"}
+              alt="Foto del usuario"
+              className="user-picture"
+            />
+          ) : (
+            <FontAwesomeIcon icon={faUserCircle} />
+          )}
         </Link>
       </footer>
     </>
