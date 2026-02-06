@@ -37,16 +37,20 @@ const ColorExploreContent = ({ colorId }) => {
     load();
   }, [colorId]);
 
+  function buildStyle() {
+    const style = {
+      color: desaturate(color?.value) || "white",
+      textShadow: `0 0 3px ${color?.value}`,
+    };
+    if (color?.name === 'negro') style.textShadow = `0 0 10px white`;
+    return style;
+  }
+
   if (loading) return null;
 
   return (
     <>
-      <h2
-        className="color-title"
-        style={{
-          color: desaturate(color?.value) || "white",
-        }}
-      >
+      <h2 className="color-title" style={buildStyle()}>
         {color?.name?.toUpperCase()}
       </h2>
       {posts?.length > 0 ? (

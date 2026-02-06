@@ -26,6 +26,7 @@ const PostDetails = ({ postId }) => {
         setLoading(true);
         const data = await getPost(postId);
         setPost(data?.data);
+        console.log(data?.data);
         changeColor(data?.data?.colorDay?.color?.value);
       } catch(err) {
         console.error('Error obteniendo post de servidor:', err);

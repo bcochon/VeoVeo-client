@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion, faFlag, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
+import { useProfile } from "../../context/ProfileContext";
 import "./PostOptions.css";
 import LoadingSpinner from "../utils/LoadingSpinner";
 
@@ -10,6 +11,7 @@ function PostOptionsModal({ post, onDelete }) {
   const [reportReason, setReportReason] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const { profile } = useProfile();
 
   const toggleReportModal = (e, reason = undefined) => {
     e.preventDefault();
@@ -26,22 +28,21 @@ function PostOptionsModal({ post, onDelete }) {
     <LoadingSpinner label=""/>
   );
 
-  if (!user) return (
-    <p>...</p>
-  );
+  if (!profile) return <p>...</p>;
 
-  if (user?.id === post?.user?.id) return (
-    <>
-      <button
-        type="button"
-        className="post-options-button post-options-danger-button"
-        onClick={openDeleteModal}
-      >
-        <FontAwesomeIcon icon={faTrash} />
-        <span>Eliminar foto</span>
-      </button>
-    </>
-  );
+  if (profile?.id === post?.user?.id)
+    return (
+      <>
+        <button
+          type="button"
+          className="post-options-button post-options-danger-button"
+          onClick={openDeleteModal}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+          <span>Eliminar foto</span>
+        </button>
+      </>
+    );
 
   if (reportOpen) return (
     <form action="">

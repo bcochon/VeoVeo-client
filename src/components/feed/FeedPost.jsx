@@ -25,7 +25,10 @@ function FeedPost({ post }) {
   const buildPostHour = (post) => {
     if (!post?.createdAt) return "";
     const postDate = new Date(post.createdAt);
-    return postDate.toLocaleTimeString();
+    const postHourString = postDate.toLocaleTimeString();
+    const secondsSincePost = ((new Date()) - postDate) / 1000;
+    const postDateString = secondsSincePost > (24*60*59) ? ` del ${postDate.toLocaleDateString()}` : '';
+    return postHourString + postDateString;
   };
 
   const handleLike = (e) => {
