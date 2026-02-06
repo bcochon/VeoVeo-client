@@ -46,6 +46,22 @@ export const ColorProvider = ({ children }) => {
     return `#${hexR}${hexG}${hexB}`;
   }
 
+  function changeColor(hexvalue) {
+    if (!hexvalue) return;
+    const rgb = hexToRgb(hexvalue);
+    const rgbString = `${rgb?.r} ${rgb?.g} ${rgb?.b}`;
+    document.documentElement.style.setProperty("--today-color-rgb", rgbString);
+    if (isLightColor(rgb))
+      document.documentElement.style.setProperty(
+        "--alternative-color-rgb",
+        "223 243 70",
+      );
+  }
+
+  function returnColor() {
+    changeColor(colorDay?.color?.value);
+  }
+
   useEffect(() => {
     const load = async () => {
       setLoadingColor(true);
@@ -56,19 +72,7 @@ export const ColorProvider = ({ children }) => {
           // color.value = desaturate(color.value);
           console.log("Color del día:", color);
           setPrimaryColor(color);
-          if (color?.value) {
-            const rgb = hexToRgb(color?.value);
-            const rgbString = `${rgb?.r} ${rgb?.g} ${rgb?.b}`;
-            document.documentElement.style.setProperty(
-              "--today-color-rgb",
-              rgbString,
-            );
-            if (isLightColor(rgb))
-              document.documentElement.style.setProperty(
-                "--alternative-color-rgb",
-                "223 243 70",
-              );
-          }
+          changeColor(color?.value);
         })
         .catch(() => console.error("Error obteniendo el color del día"))
         .finally(() => setLoadingColor(false));
@@ -78,7 +82,14 @@ export const ColorProvider = ({ children }) => {
 
   return (
     <ColorContext.Provider
-      value={{ colorDay, primaryColor, loadingColor, desaturate }}
+      value={{
+        colorDay,
+        primaryColor,
+        loadingColor,
+        desaturate,
+        changeColor,
+        returnColor,
+      }}
     >
       {children}
     </ColorContext.Provider>

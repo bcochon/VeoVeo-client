@@ -3,6 +3,7 @@ import FeedPost from "./feed/FeedPost";
 import LoadingSpinner from "./utils/LoadingSpinner";
 import usePostService from "../services/postService";
 import "./PostDetails.css";
+import { useColor } from "../context/ColorContext";
 
 const PostDetails = ({ postId }) => {
   const [post, setPost] = useState(undefined);
@@ -10,20 +11,13 @@ const PostDetails = ({ postId }) => {
 
   const { getPost } = usePostService();
 
-  function getBackgroundColor() {
-    const postColor = post?.colorDay?.color?.value;
-    if (!postColor) return 'transparent';
-    return postColor + '80';
-  }
+  const { changeColor, returnColor } = useColor();
 
-  function getStyle() {
-    const style = {
-      backgroundColor: getBackgroundColor(),
-    }
-    const color = post?.colorDay?.color?.value
-    if (color) style['--alternative-color'] = color;
-    return style;
-  }
+  useEffect(() => {
+    return () => {
+      returnColor();
+    };
+  }, []);
 
   useEffect(() => {
     const load = async () => {
@@ -32,6 +26,7 @@ const PostDetails = ({ postId }) => {
         setLoading(true);
         const data = await getPost(postId);
         setPost(data?.data);
+        changeColor(data?.data?.colorDay?.color?.value);
       } catch(err) {
         console.error('Error obteniendo post de servidor:', err);
       } finally {
@@ -48,7 +43,7 @@ const PostDetails = ({ postId }) => {
   );
 
   return (
-    <section className="post-details-container" style={getStyle()}>
+    <section className="post-details-container">
       {post && <FeedPost post={post} />}
     </section>
   );
