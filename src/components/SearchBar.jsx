@@ -11,7 +11,7 @@ const SearchResults = ({ loading, results = [] }) => {
       {results.map((result) => (
         <Link className="search-result" key={result?.id} to={`/users/${result?.id}`}>
           <img
-            src="./placeholder.jpg"
+            src={ result?.profilePicture?.url || "./icon-placeholder.png" }
             alt={`Foto de perfil de ${result?.username}`}
           />
           <span>{result?.username}</span>

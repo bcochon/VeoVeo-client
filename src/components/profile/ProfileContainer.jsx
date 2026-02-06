@@ -48,7 +48,7 @@ function ProfileContainer({ userData }) {
         <Link to="/profile" className="profile-picture-link">
           <img
             className="profile-picture"
-            src={userData?.profilePicture?.url || "./placeholder.jpg"}
+            src={userData?.profilePicture?.url || "./icon-placeholder.png"}
             alt="Foto de perfil"
           />
         </Link>

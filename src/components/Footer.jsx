@@ -63,7 +63,7 @@ const Footer = ({ currentPage = undefined }) => {
         >
           {profile ? (
             <img
-              src={profile?.profilePicture?.url || "./placeholder.jpg"}
+              src={profile?.profilePicture?.url || "./icon-placeholder.png"}
               alt="Foto del usuario"
               className="user-picture"
             />

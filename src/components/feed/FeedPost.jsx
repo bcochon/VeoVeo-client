@@ -101,7 +101,7 @@ function FeedPost({ post }) {
           className="feed-post-user-details"
         >
           <img
-            src={profile?.profilePicture?.url || "./placeholder.jpg"}
+            src={profile?.profilePicture?.url || "./icon-placeholder.png"}
             alt="Foto del usuario"
             className="user-picture"
           />
