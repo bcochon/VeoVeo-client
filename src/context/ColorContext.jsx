@@ -51,11 +51,10 @@ export const ColorProvider = ({ children }) => {
     const rgb = hexToRgb(hexvalue);
     const rgbString = `${rgb?.r} ${rgb?.g} ${rgb?.b}`;
     document.documentElement.style.setProperty("--today-color-rgb", rgbString);
-    if (isLightColor(rgb))
-      document.documentElement.style.setProperty(
-        "--alternative-color-rgb",
-        "223 243 70",
-      );
+    document.documentElement.style.setProperty(
+      "--alternative-color-rgb",
+      isLightColor(rgb)? "223 243 70" : rgbString,
+    );
   }
 
   function returnColor() {
