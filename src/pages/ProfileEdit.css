@@ -1,0 +1,58 @@
+.profile-edition-container {
+
+}
+
+.profile-icon-selector {
+  margin: 3vh 0;
+}
+
+.profile-icon-selector .profile-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.profile-icon-selector .select-icon-button {
+  padding: 0;
+  border-radius: 100%;
+  width: 80%;
+  min-height: 0;
+  aspect-ratio: 1;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 1.5rem;
+  transition: border 0.1s ease-in-out,
+              box-shadow 0.1s ease-in-out;
+}
+
+.profile-icon-selector .select-icon-button.selected,
+.profile-icon-selector .select-icon-button.selected:hover,
+.profile-icon-selector .select-icon-button.selected:focus {
+  border: solid 3px var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+  outline: none;
+}
+
+.profile-icon-selector .select-icon-button img {
+  border-radius: 100%;
+  width: 100%;
+}
+
+.profile-icon-selector .profile-edition-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 2vh;
+}
+
+.profile-icon-selector .profile-edition-action {
+  background-color: gray;
+  min-width: fit-content;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  font-weight: 500;
+}
+
+.profile-icon-selector .profile-save-button {
+  background-color: rgb(var(--primary-color-rgb)/0.85);
+}

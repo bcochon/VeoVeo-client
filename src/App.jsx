@@ -6,6 +6,7 @@ import News from "./pages/News";
 import Upload from "./pages/Upload";
 import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
+import ProfileEdit from "./pages/ProfileEdit";
 import Login from "./pages/Login";
 import './App.css'
 import 'leaflet/dist/leaflet.css';
@@ -84,6 +85,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile/edit"
+          element={
+            <ProtectedRoute>
+              <ProfileEdit />
             </ProtectedRoute>
           }
         />

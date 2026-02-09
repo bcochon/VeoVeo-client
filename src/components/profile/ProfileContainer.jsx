@@ -4,6 +4,7 @@ import LoadingSpinner from "../utils/LoadingSpinner";
 import PostsGrid from "./PostsGrid";
 import "./ProfileContainer.css";
 import usePostService from "../../services/postService";
+import { useProfile } from "../../context/ProfileContext";
 
 function ProfileContainer({ userData }) {
   const [followers, setFollowers] = useState(0);
@@ -13,6 +14,8 @@ function ProfileContainer({ userData }) {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const { profile } = useProfile();
 
   const { getUserPosts } = usePostService();
 
@@ -45,7 +48,10 @@ function ProfileContainer({ userData }) {
   return (
     <section className="profile-container">
       <div className="profile-details">
-        <Link to="/profile" className="profile-picture-link">
+        <Link
+          to={(userData?.id === profile?.id)? "/profile/edit" : ""}
+          className="profile-picture-link"
+        >
           <img
             className="profile-picture"
             src={userData?.profilePicture?.url || "./icon-placeholder.png"}

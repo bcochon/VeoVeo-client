@@ -42,7 +42,41 @@ const useUserService = () => {
     return content.data;
   }
 
-  return { getUserData, searchUsers };
+  async function getProfilePictures() {
+    const url = new URL(`${config.serverUrl}/users/pictures`);
+
+    const response = await requestWithTokenRetry(url.toString(), {
+      method: "GET",
+      credentials: "include",
+    });
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
+    }
+    const content = await response.json();
+    return content.data;
+  }
+
+  async function updateProfilePicture(newPictureId) {
+    const url = new URL(`${config.serverUrl}/users/pictures`);
+
+    const response = await requestWithTokenRetry(url.toString(), {
+      method: "PUT",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: newPictureId }),
+    });
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
+    }
+    const content = await response.json();
+    return content.data;
+  }
+
+  return { getUserData, searchUsers, getProfilePictures, updateProfilePicture };
 }
 
 export default useUserService;
