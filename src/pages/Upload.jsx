@@ -38,7 +38,14 @@ const Upload = () => {
             </button>
             <div className="today-color-container">
               <h2>El color de hoy es</h2>
-              <span className="today-color">
+              <span
+                className="today-color"
+                style={
+                  colorDay?.color?.name === "negro"
+                    ? { textShadow: `1px 1px 2px white, -1px -1px 10px white` }
+                    : {}
+                }
+              >
                 {colorDay?.color?.name?.toUpperCase()}
               </span>
             </div>

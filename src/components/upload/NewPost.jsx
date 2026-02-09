@@ -43,8 +43,8 @@ const NewPost = ({ image = null, color = null, onUploading = () => {}, onCancel 
         type="text" 
         placeholder="Descripción de la imagen..." 
         name="Descripcion"
-        maxLength={128} 
-        onChange={(e) => setDescription(e?.target?.value)} 
+        maxLength={128}
+        onChange={(e) => setDescription(e?.target?.value)}
       />
       <div className="new-post-actions">
         <button type="button" onClick={onCancel} disabled={loading}>

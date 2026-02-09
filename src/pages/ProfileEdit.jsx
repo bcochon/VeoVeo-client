@@ -7,9 +7,11 @@ import useUserService from "../services/userService";
 import LoadingSpinner from "../components/utils/LoadingSpinner";
 import ToastAlertContainer from "../components/utils/ToastAlertContainer";
 import { Link } from "react-router-dom";
+import { useColor } from "../context/ColorContext";
 
 const ProfileIconSelector = ({ profilePictureId, onError, onSuccess }) => {
   const { setProfile } = useProfile();
+  const { primaryColor } = useColor();
   const { getProfilePictures, updateProfilePicture } = useUserService();
   const [profilePicture, setProfilePicture] = useState(profilePictureId);
   const [availablePictures, setAvailablePictures] = useState([]);
@@ -76,6 +78,11 @@ const ProfileIconSelector = ({ profilePictureId, onError, onSuccess }) => {
             }
             onClick={(e) => handlePictureSelect(e, picture?.id)}
             disabled={loading}
+            style={
+              primaryColor?.name === "negro" ?
+                { '--primary-color' : 'white' }
+                : {}
+            }
           >
             <img
               src={picture?.url || "./placeholder.png"}
