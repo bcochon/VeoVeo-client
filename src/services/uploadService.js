@@ -81,6 +81,25 @@ const useUploadService = () => {
     return content.data;
   }
 
+  async function getPfpSignature() {
+    console.log("Obteniendo signature especial del servidor...");
+    const response = await requestWithTokenRetry(
+      `${config.serverUrl}/uploads/signature/profile-pictures`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
+    }
+    const content = await response.json();
+    console.log("Signature especial obtenida del servidor");
+    return content.data;
+  }
+
   async function uploadToCloudinary(blob, formData) {
     console.log("Cargando imagen en CDN...");
     const builtFormData = new FormData();
@@ -151,11 +170,45 @@ const useUploadService = () => {
     return content.data;
   }
 
+  async function createProfilePicture(blob, name = undefined) {
+    const formData = await getPfpSignature();
+    const cloudinaryData = await uploadToCloudinary(blob, formData);
+
+    console.log("Creando profile picture en servidor...");
+    const newPfp = {
+      name,
+      publicId: cloudinaryData?.public_id,
+      width: cloudinaryData?.width,
+      height: cloudinaryData?.height,
+      mimeType: `${cloudinaryData?.resource_type}/${cloudinaryData?.format}`,
+    };
+    console.log("DTO:", newPfp);
+
+    const response = await requestWithTokenRetry(`${config.serverUrl}/users/pictures`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newPfp),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Servidor respondió ${response.status} ${response.statusText}`,
+      );
+    }
+    console.log("Profile logo creado en servidor");
+
+    const content = await response.json();
+    return content.data;
+  }
+
   return {
     dataURLtoBlob,
     compressImage,
     createPost,
-  }
+    getPfpSignature,
+    createProfilePicture,
+  };
 }
 
 export default useUploadService;

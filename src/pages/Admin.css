@@ -1,0 +1,24 @@
+.admin-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.admin-container .new-pfp-form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  gap: 0.5rem;
+}
+
+.selected-file {
+  font-size: 0.9rem;
+  color: #4caf50;
+  margin-top: -0.3rem;
+  margin-bottom: 0.5rem;
+}

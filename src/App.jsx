@@ -8,6 +8,7 @@ import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
 import ProfileEdit from "./pages/ProfileEdit";
 import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 import './App.css'
 import 'leaflet/dist/leaflet.css';
 import PostView from "./pages/PostView";
@@ -128,6 +129,14 @@ function App() {
             <PublicRoute>
               <PostView />
             </PublicRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
           }
         />
       </Routes>
